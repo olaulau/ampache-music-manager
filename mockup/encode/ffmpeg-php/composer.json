@@ -1,0 +1,5 @@
+ {
+    "require": {
+        "char0n/ffmpeg-php": "^3.0.0"
+    }
+ }

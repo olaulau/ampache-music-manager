@@ -1,0 +1,7 @@
+*.flac
+*.mp4
+*.ogg
+*.mp3
+*.m4a
+
+vendor

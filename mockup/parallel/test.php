@@ -1,13 +1,13 @@
 <?php
 
-for ($i=0; $i<10; $i++) {
-    // open ten processes
-    for ($j = 0; $j < 10; $j++) {
-        $pipe[$j] = popen('script2.php', 'w');
-    }
+$nb_processes = 10;
 
-    // wait for them to finish
-    for ($j = 0; $j < 10; ++$j) {
-        pclose($pipe[$j]);
-    }
+// open ten processes
+for ($j = 0; $j < $nb_processes; $j++) {
+	$pipe[$j] = popen('./sleep.sh', 'w');
+}
+
+// wait for them to finish
+for ($j = 0; $j < $nb_processes; ++$j) {
+	pclose($pipe[$j]);
 }

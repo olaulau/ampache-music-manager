@@ -1,23 +1,10 @@
 <?php
+require_once __DIR__ . "/vendor/autoload.php";
+
 use Tree\Node\Node;
 
-class FsTree
+class FsTree extends Node
 {
-	private Node $node;
-	
-	
-	public function __construct ($value)
-	{
-		if($value instanceof Node)
-		{
-			$this->node = $value;
-		}
-		else
-		{
-			$this->node = new Node($value);
-		}
-	}
-	
 	
 	public function scan ()
 	{
@@ -26,13 +13,12 @@ class FsTree
 		{
 			if(strpos($file, ".") !== 0)
 			{
-				$child = new Node($file);
-				$this->node->addChild($child);
+				$child = new FsTree($file);
+				$this->addChild($child);
 				
-				$fst = new FsTree($child);
-				if(is_dir($fst->getFullPath()))
+				if(is_dir($child->getFullPath()))
 				{
-					$fst->scan();
+					$child->scan();
 				}
 			}
 		}
@@ -41,24 +27,23 @@ class FsTree
 	
 	public function printAsTree ()
 	{
-		$depth = $this->node->getDepth();
-		echo str_repeat("  ", $depth) . $this->node->getValue() . PHP_EOL;
-		foreach ($this->node->getChildren() as $child)
+		$depth = $this->getDepth();
+		echo str_repeat("  ", $depth) . $this->getValue() . PHP_EOL;
+		foreach ($this->getChildren() as $child)
 		{
-			$fst_child = new FsTree($child);
-			$fst_child->printAsTree();
+			$child->printAsTree();
 		}
 	}
 	
 	
 	public function getFullPath ()
 	{
-		$nodeList = $this->node->getAncestorsAndSelf();
+		$nodeList = $this->getAncestorsAndSelf();
 		$pathList = [];
 		foreach ($nodeList as $node) {
 			$pathList [] = $node->getValue();
 		}
-		return implode("/", $pathList);
+		return implode(DIRECTORY_SEPARATOR, $pathList);
 	}
 	
 }

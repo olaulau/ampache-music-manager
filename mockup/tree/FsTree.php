@@ -6,45 +6,59 @@ class FsTree
 	private Node $node;
 	
 	
-	public function __construct ()
+	public function __construct ($value)
 	{
-		$this->node = new Node();
+		if($value instanceof Node)
+		{
+			$this->node = $value;
+		}
+		else
+		{
+			$this->node = new Node($value);
+		}
 	}
 	
 	
-	public function scan ($base)
+	public function scan ()
 	{
-		$this->node->setValue(realpath($base));
-		$d = dir($base);
-		while (false !== ($file = $d->read()))
+		$files = scandir($this->getFullPath());
+		foreach ($files as $file)
 		{
 			if(strpos($file, ".") !== 0)
 			{
-				$this->node->addChild(new Node($file));
-				//TODO recursive
+				$child = new Node($file);
+				$this->node->addChild($child);
+				
+				$fst = new FsTree($child);
+				if(is_dir($fst->getFullPath()))
+				{
+					$fst->scan();
+				}
 			}
 		}
-		$d->close();
 	}
 	
 	
-	protected static function fromNode ($node)
-	{
-		$fst = new FsTree();
-		$fst->node = $node;
-		return $fst;
-	}
-	
-	
-	public function print ()
+	public function printAsTree ()
 	{
 		$depth = $this->node->getDepth();
-		echo str_repeat("\t", $depth) . $this->node->getValue() . "<br/>" . PHP_EOL;
+		echo str_repeat("  ", $depth) . $this->node->getValue() . PHP_EOL;
 		foreach ($this->node->getChildren() as $child)
 		{
-			$fst_child = FsTree::fromNode($child);
-			$fst_child->print();
+			$fst_child = new FsTree($child);
+			$fst_child->printAsTree();
 		}
+	}
+	
+	
+	public function getFullPath ()
+	{
+		$nodeList = $this->node->getAncestorsAndSelf();
+		$pathList = [];
+		foreach ($nodeList as $node) {
+			$pathList [] = $node->getValue();
+		}
+		return implode("/", $pathList);
 	}
 	
 }

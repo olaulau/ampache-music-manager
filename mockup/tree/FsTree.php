@@ -6,19 +6,22 @@ use Tree\Node\Node;
 class FsTree extends Node
 {
 	
-	public function scan ()
+	public function scan ($testFunc=null)
 	{
 		$files = scandir($this->getFullPath());
 		foreach ($files as $file)
 		{
-			if(strpos($file, ".") !== 0)
+			if(strpos($file, ".") !== 0) // don't bother with hidden files
 			{
-				$child = new FsTree($file);
-				$this->addChild($child);
-				
-				if(is_dir($child->getFullPath()))
+				if($testFunc === null  ||  $testFunc($this->getFullPath() . DIRECTORY_SEPARATOR . $file))
 				{
-					$child->scan();
+					$child = new FsTree($file);
+					$this->addChild($child);
+					
+					if(is_dir($child->getFullPath()))
+					{
+						$child->scan($testFunc);
+					}
 				}
 			}
 		}

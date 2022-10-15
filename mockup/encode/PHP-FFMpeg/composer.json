@@ -1,5 +1,11 @@
 {
+	"repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/olaulau/php-ffmpeg"
+        }
+    ],
     "require": {
-        "php-ffmpeg/php-ffmpeg": "^1.0"
+        "php-ffmpeg/php-ffmpeg": "dev-patch-1"
     }
 }

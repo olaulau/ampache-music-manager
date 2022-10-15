@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aaf0a834553c0ad2ddb790eea1f12df6",
+    "content-hash": "c99583ba7c7e0060358b90b9fc5e1960",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -55,17 +55,11 @@
         },
         {
             "name": "php-ffmpeg/php-ffmpeg",
-            "version": "v1.0.1",
+            "version": "dev-patch-1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/PHP-FFMpeg/PHP-FFMpeg.git",
-                "reference": "bda300b69acecf791d2934cd5ed43a8ba24febf6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PHP-FFMpeg/PHP-FFMpeg/zipball/bda300b69acecf791d2934cd5ed43a8ba24febf6",
-                "reference": "bda300b69acecf791d2934cd5ed43a8ba24febf6",
-                "shasum": ""
+                "url": "https://github.com/olaulau/php-ffmpeg",
+                "reference": "e30f9093c13c7ba382d1652ecec2352120079666"
             },
             "require": {
                 "evenement/evenement": "^3.0",
@@ -89,7 +83,12 @@
                     "Alchemy\\BinaryDriver\\": "src/Alchemy/BinaryDriver"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Alchemy\\Tests\\BinaryDriver\\": "tests/Alchemy/BinaryDriver",
+                    "Tests\\FFMpeg\\": "tests/FFMpeg"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -136,11 +135,7 @@
                 "video",
                 "video processing"
             ],
-            "support": {
-                "issues": "https://github.com/PHP-FFMpeg/PHP-FFMpeg/issues",
-                "source": "https://github.com/PHP-FFMpeg/PHP-FFMpeg/tree/v1.0.1"
-            },
-            "time": "2022-02-22T15:54:06+00:00"
+            "time": "2022-10-07T23:39:08+00:00"
         },
         {
             "name": "psr/cache",
@@ -746,7 +741,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "php-ffmpeg/php-ffmpeg": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

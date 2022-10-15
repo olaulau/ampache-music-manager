@@ -19,14 +19,11 @@ require_once __DIR__.'/layout/header.phtml';
 				<div class="col-auto">
 					<span id="" class="form-text"> root path ot media library </span>
 				</div>
-				<div class="col-auto">
-					<button class="btn btn-success" type="submit" name="">envoyer</button>
-				</div>
 				<?php
 				if($root_path_valid === true)
 				{
 					?>
-					<div class="valid-feedback d-block">Looks good!</div>
+<!-- 					<div class="valid-feedback d-block">Looks good!</div> -->
 					<?php
 				}
 				else
@@ -36,6 +33,38 @@ require_once __DIR__.'/layout/header.phtml';
 					<?php
 				}
 				?>
+			</div>
+			
+			<?php
+			if($root_path_valid === true){
+				?>
+				<div class="row g-3 align-items-center">
+					<div class="col-auto">
+						<label for="root_path" calss="col-form-label">library</label>
+					</div>
+					<div class="col-auto">
+						<select id="" class="form-select" name="library">
+							<option></option>
+							<?php
+							foreach ($libraries as $current_library)
+							{
+								?>
+								<option value="<?= $current_library ?>" <?= ($library===$current_library) ? "selected" : "" ?>><?= $current_library ?></option>
+								<?php
+							}
+							?>
+						</select>
+					</div>
+					<div class="col-auto">
+						<span id="" class="form-text"> choose a library to work on </span>
+					</div>
+				</div>
+				<?php
+			}
+			?>
+			
+			<div class="col-auto">
+				<button class="btn btn-success" type="submit" name="">envoyer</button>
 			</div>
 		</form>
 	</main>

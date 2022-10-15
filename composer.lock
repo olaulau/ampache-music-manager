@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45672bdbe5333dba325b900ae066bc14",
+    "content-hash": "6f2dd01668436f46f3a59e1c0cf400be",
     "packages": [
         {
             "name": "bcosca/fatfree",
@@ -253,6 +253,54 @@
                 "source": "https://github.com/FortAwesome/Font-Awesome"
             },
             "time": "2022-08-31T21:02:43+00:00"
+        },
+        {
+            "name": "nicmart/tree",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicmart/Tree.git",
+                "reference": "e992740d9ee7975c3fc324ddaafaf63b21e17704"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicmart/Tree/zipball/e992740d9ee7975c3fc324ddaafaf63b21e17704",
+                "reference": "e992740d9ee7975c3fc324ddaafaf63b21e17704",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "ergebnis/composer-normalize": "^2.19.0",
+                "ergebnis/license": "^1.1.0",
+                "ergebnis/php-cs-fixer-config": "^2.14.0",
+                "phpunit/phpunit": "^8.5.30",
+                "psalm/plugin-phpunit": "~0.17.0",
+                "vimeo/psalm": "^4.27.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tree\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolò Martini",
+                    "email": "nicmartnic@gmail.com"
+                }
+            ],
+            "description": "A basic but flexible php tree data structure and a fluent tree builder implementation.",
+            "support": {
+                "issues": "https://github.com/nicmart/Tree/issues",
+                "source": "https://github.com/nicmart/Tree/tree/0.4.0"
+            },
+            "time": "2022-10-04T14:33:50+00:00"
         },
         {
             "name": "olaulau/htmlskel",

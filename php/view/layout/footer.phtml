@@ -1,0 +1,10 @@
+<?php
+$f3 = Base::instance();
+$TIME = $f3->get("TIME");
+$controller_duration = microtime(true) - $TIME;
+?>
+	<footer class="footer">
+		<div class="container">
+			<span class="text-muted">generation time : <?= round($controller_duration*1000, 3) ?> ms</span>
+		</div>
+	</footer>

@@ -1,0 +1,49 @@
+<?php
+require_once __DIR__.'/layout/head.phtml';
+?>
+
+<?php
+require_once __DIR__.'/layout/header.phtml';
+?>
+
+	<!-- Begin page content -->
+	<main role="main" class="container-fluid">
+		<form action="" method="post">
+			<div class="row g-3 align-items-center">
+				<div class="col-auto">
+					<label for="root_path" calss="col-form-label">root path</label>
+				</div>
+				<div class="col-auto">
+					<input type="text" id="root_path" class="form-control <?= $root_path_valid ? "is-valid" : "" ?> <?= $root_path_valid ? "" : "is-invalid" ?>" size="100" name="root_path" placeholder="root_path" value="<?= $root_path ?>">
+				</div>
+				<div class="col-auto">
+					<span id="" class="form-text"> root path ot media library </span>
+				</div>
+				<div class="col-auto">
+					<button class="btn btn-success" type="submit" name="">envoyer</button>
+				</div>
+				<?php
+				if($root_path_valid === true)
+				{
+					?>
+					<div class="valid-feedback d-block">Looks good!</div>
+					<?php
+				}
+				else
+				{
+					?>
+					<div class="invalid-feedback d-block">root path is invalid (does not exist, is not a dir, or is not readable)</div>
+					<?php
+				}
+				?>
+			</div>
+		</form>
+	</main>
+
+<?php
+require_once __DIR__.'/layout/footer.phtml';
+?>
+
+<?php
+require_once __DIR__.'/layout/foot.phtml';
+?>

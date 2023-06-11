@@ -1,0 +1,89 @@
+<?php
+use Tree\Visitor\PreOrderVisitor;
+
+require_once __DIR__.'/../layout/head.phtml';
+?>
+
+<?php
+require_once __DIR__.'/../layout/header.phtml';
+?>
+
+	<main role="main" class="container-fluid bg-info">
+		<form action="" method="get">
+			<div class="row g-3 align-items-center">
+				<div class="col-auto">
+					<label for="search_text" class="col-form-label">search text</label>
+				</div>
+				<div class="col-auto">
+					<input type="text" id="search_text" class="form-control" size="30" name="search_text" placeholder="search text" value="<?= $f3->get("REQUEST.search_text") ?>">
+				</div>
+				<div class="col-auto">
+					<span id="" class="form-text"> the text to replace </span>
+				</div>
+				
+				<div class="col-auto">
+					<i class="fa-solid fa-right-long"></i>
+				</div>
+
+				<div class="col-auto">
+					<label for="replace_text" class="col-form-label">replace text</label>
+				</div>
+				<div class="col-auto">
+					<input type="text" id="replace_text" class="form-control" size="30" name="replace_text" placeholder="replace text" value="<?= $f3->get("REQUEST.replace_text") ?>">
+				</div>
+				<div class="col-auto">
+					<span id="" class="form-text"> the new text </span>
+				</div>
+
+				<div class="col-auto">
+					<button class="btn btn-success" type="submit">view only</button>
+					<input type="submit" class="btn btn-danger" name="rename" value="rename" formaction="" formmethod="post">
+				</div>
+			</div>
+		</form>
+	</main>
+	
+	<main role="main" class="container-fluid">
+	<?php
+	if(!empty($fst))
+	{ /* @var \classes\FsTree $fst */
+	?>
+		<table class="table table-dbordered">
+			<tr>
+				<th style="width: 50%;">old album name</th>
+				<th style="width: 50%;">new album name</th>
+			</tr>
+			<?php
+			$search_text = $f3->get("REQUEST.search_text");
+			$replace_text = $f3->get("REQUEST.replace_text");
+			$visitor = new PreOrderVisitor();
+			$yield = $fst->accept($visitor);
+			foreach ($yield as $node)
+			{
+				$depth = $node->getDepth();
+				$old_value = $node->getValue();
+				if(!empty($replace_text))
+					$new_value = str_replace($search_text, '<b>'.$replace_text.'</b>', $old_value);
+				$old_value = str_replace($search_text, '<b>'.$search_text.'</b>', $old_value);
+				?>
+				<tr>
+					<td><pre><?= str_repeat("  ", $depth) . $old_value ?></pre></td>
+					<td><pre><?= !empty($replace_text) ? str_repeat("  ", $depth) . $new_value : "" ?></pre></td>
+				</tr>
+				<?php
+			}
+			?>
+		</table>
+		
+	<?php
+	}
+	?>
+	</main>
+
+<?php
+require_once __DIR__.'/../layout/footer.phtml';
+?>
+
+<?php
+require_once __DIR__.'/../layout/foot.phtml';
+?>

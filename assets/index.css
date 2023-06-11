@@ -23,7 +23,7 @@ body {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
-body > .container, body > .container-fluid {
+body > .container:nth-of-type(1), body > .container-fluid:nth-of-type(1) {
   padding: 60px 15px 0;
 }
 
@@ -34,4 +34,10 @@ body > .container, body > .container-fluid {
 
 code {
   font-size: 80%;
+}
+
+
+/* custo */
+pre {
+	margin: 0;
 }

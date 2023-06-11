@@ -2,12 +2,14 @@
 namespace classes;
 
 use Tree\Node\Node;
+use Tree\Visitor\PreOrderVisitor;
 
 class FsTree extends Node
 {
 	
 	public function scan ($testFunc=null, $max_depth=null)
 	{
+		//TODO accelerate with the use of "find" command
 		$files = scandir($this->getFullPath());
 		foreach ($files as $file)
 		{
@@ -19,7 +21,6 @@ class FsTree extends Node
 				// handle max_depth constraint
 				if($max_depth === null || $depth <= $max_depth)
 				{
-					
 					// handle test function
 					if($testFunc === null  ||  $testFunc($fullpath))
 					{
@@ -39,12 +40,12 @@ class FsTree extends Node
 	
 	public function printAsTree ()
 	{
+		$visitor = new PreOrderVisitor();
+		$yield = $this->accept($visitor);
 		$res = "";
-		$depth = $this->getDepth();
-		$res .= str_repeat("  ", $depth) . $this->getValue() . PHP_EOL;
-		foreach ($this->getChildren() as $child)
-		{
-			$res .= $child->printAsTree();
+		foreach ($yield as $node) {
+			$depth = $node->getDepth();
+			$res .= str_repeat("  ", $depth) . $node->getValue() . PHP_EOL;
 		}
 		return $res;
 	}

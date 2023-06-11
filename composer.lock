@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f2dd01668436f46f3a59e1c0cf400be",
+    "content-hash": "d4ca4cfc31b5c5107f1819508a4510b5",
     "packages": [
         {
             "name": "bcosca/fatfree",
-            "version": "3.8.0",
+            "version": "3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcosca/fatfree.git",
-                "reference": "7b14084349809e369c0a210bfc660e783df17324"
+                "reference": "3f7741b671accd3aa6d38461203ae5c07e39d58d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcosca/fatfree/zipball/7b14084349809e369c0a210bfc660e783df17324",
-                "reference": "7b14084349809e369c0a210bfc660e783df17324",
+                "url": "https://api.github.com/repos/bcosca/fatfree/zipball/3f7741b671accd3aa6d38461203ae5c07e39d58d",
+                "reference": "3f7741b671accd3aa6d38461203ae5c07e39d58d",
                 "shasum": ""
             },
             "require": {
@@ -32,22 +32,22 @@
             "homepage": "http://fatfreeframework.com/",
             "support": {
                 "issues": "https://github.com/bcosca/fatfree/issues",
-                "source": "https://github.com/bcosca/fatfree/tree/3.8.0"
+                "source": "https://github.com/bcosca/fatfree/tree/3.8.1"
             },
-            "time": "2022-02-16T15:33:45+00:00"
+            "time": "2022-11-04T23:22:40+00:00"
         },
         {
             "name": "bcosca/fatfree-core",
-            "version": "3.8.0",
+            "version": "3.8.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bcosca/fatfree-core.git",
-                "reference": "cdd878db018280369b643fce62f70e55044f9ac4"
+                "url": "https://github.com/f3-factory/fatfree-core.git",
+                "reference": "f6ea45472f55a1ecabd4ced74cb56f0efd6af34e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcosca/fatfree-core/zipball/cdd878db018280369b643fce62f70e55044f9ac4",
-                "reference": "cdd878db018280369b643fce62f70e55044f9ac4",
+                "url": "https://api.github.com/repos/f3-factory/fatfree-core/zipball/f6ea45472f55a1ecabd4ced74cb56f0efd6af34e",
+                "reference": "f6ea45472f55a1ecabd4ced74cb56f0efd6af34e",
                 "shasum": ""
             },
             "require": {
@@ -66,10 +66,10 @@
             "description": "A powerful yet easy-to-use PHP micro-framework designed to help you build dynamic and robust Web applications - fast!",
             "homepage": "http://fatfreeframework.com/",
             "support": {
-                "issues": "https://github.com/bcosca/fatfree-core/issues",
-                "source": "https://github.com/bcosca/fatfree-core/tree/3.8.0"
+                "issues": "https://github.com/f3-factory/fatfree-core/issues",
+                "source": "https://github.com/f3-factory/fatfree-core/tree/3.8.1"
             },
-            "time": "2022-02-15T16:59:01+00:00"
+            "time": "2022-11-04T23:15:19+00:00"
         },
         {
             "name": "components/jquery",
@@ -211,16 +211,16 @@
         },
         {
             "name": "fortawesome/font-awesome",
-            "version": "6.2.0",
+            "version": "6.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "d3a7818c253fcbafff9ebd1d4abb2866c192e1d7"
+                "reference": "0698449d50f2b95517562295a59d414afc68b369"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/d3a7818c253fcbafff9ebd1d4abb2866c192e1d7",
-                "reference": "d3a7818c253fcbafff9ebd1d4abb2866c192e1d7",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/0698449d50f2b95517562295a59d414afc68b369",
+                "reference": "0698449d50f2b95517562295a59d414afc68b369",
                 "shasum": ""
             },
             "type": "library",
@@ -252,32 +252,34 @@
                 "issues": "https://github.com/FortAwesome/Font-Awesome/issues",
                 "source": "https://github.com/FortAwesome/Font-Awesome"
             },
-            "time": "2022-08-31T21:02:43+00:00"
+            "time": "2023-03-27T16:58:41+00:00"
         },
         {
             "name": "nicmart/tree",
-            "version": "0.4.0",
+            "version": "0.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicmart/Tree.git",
-                "reference": "e992740d9ee7975c3fc324ddaafaf63b21e17704"
+                "reference": "1e00b25e65fc956cc2d089b640b951763bdcbbaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nicmart/Tree/zipball/e992740d9ee7975c3fc324ddaafaf63b21e17704",
-                "reference": "e992740d9ee7975c3fc324ddaafaf63b21e17704",
+                "url": "https://api.github.com/repos/nicmart/Tree/zipball/1e00b25e65fc956cc2d089b640b951763bdcbbaf",
+                "reference": "1e00b25e65fc956cc2d089b640b951763bdcbbaf",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.0"
+                "php": "~8.0.0 || ~8.1.0 || ~8.2.0"
             },
             "require-dev": {
-                "ergebnis/composer-normalize": "^2.19.0",
-                "ergebnis/license": "^1.1.0",
-                "ergebnis/php-cs-fixer-config": "^2.14.0",
-                "phpunit/phpunit": "^8.5.30",
-                "psalm/plugin-phpunit": "~0.17.0",
-                "vimeo/psalm": "^4.27.0"
+                "ergebnis/composer-normalize": "^2.29.0",
+                "ergebnis/license": "^2.1.0",
+                "ergebnis/php-cs-fixer-config": "^5.3.1",
+                "fakerphp/faker": "^1.21.0",
+                "infection/infection": "~0.26.19",
+                "phpunit/phpunit": "^9.6.3",
+                "psalm/plugin-phpunit": "~0.18.4",
+                "vimeo/psalm": "^5.7.5"
             },
             "type": "library",
             "autoload": {
@@ -293,14 +295,18 @@
                 {
                     "name": "Nicolò Martini",
                     "email": "nicmartnic@gmail.com"
+                },
+                {
+                    "name": "Andreas Möller",
+                    "email": "am@localheinz.com"
                 }
             ],
             "description": "A basic but flexible php tree data structure and a fluent tree builder implementation.",
             "support": {
                 "issues": "https://github.com/nicmart/Tree/issues",
-                "source": "https://github.com/nicmart/Tree/tree/0.4.0"
+                "source": "https://github.com/nicmart/Tree/tree/0.7.1"
             },
-            "time": "2022-10-04T14:33:50+00:00"
+            "time": "2023-02-24T15:10:48+00:00"
         },
         {
             "name": "olaulau/htmlskel",
@@ -333,16 +339,16 @@
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v5.2.2",
+            "version": "v5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "961d5ff9844372a4e294980c667bbe7e0651cdeb"
+                "reference": "60098ac499d30aa50575b0b7137391c06ef25429"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/961d5ff9844372a4e294980c667bbe7e0651cdeb",
-                "reference": "961d5ff9844372a4e294980c667bbe7e0651cdeb",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/60098ac499d30aa50575b0b7137391c06ef25429",
+                "reference": "60098ac499d30aa50575b0b7137391c06ef25429",
                 "shasum": ""
             },
             "replace": {
@@ -377,9 +383,9 @@
             ],
             "support": {
                 "issues": "https://github.com/twbs/bootstrap/issues",
-                "source": "https://github.com/twbs/bootstrap/tree/v5.2.2"
+                "source": "https://github.com/twbs/bootstrap/tree/v5.3.0"
             },
-            "time": "2022-10-03T07:44:02+00:00"
+            "time": "2023-05-30T15:15:55+00:00"
         }
     ],
     "packages-dev": [],

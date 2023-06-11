@@ -11,22 +11,17 @@ require_once __DIR__.'/layout/header.phtml';
 		<form action="" method="post">
 			<div class="row g-3 align-items-center">
 				<div class="col-auto">
-					<label for="root_path" calss="col-form-label">root path</label>
+					<label for="root_path" class="col-form-label">root path</label>
 				</div>
 				<div class="col-auto">
-					<input type="text" id="root_path" class="form-control <?= $root_path_valid ? "is-valid" : "" ?> <?= $root_path_valid ? "" : "is-invalid" ?>" size="100" name="root_path" placeholder="root_path" value="<?= $root_path ?>">
+					<input type="text" id="root_path" class="form-control <?= $root_path_valid ? "is-valid" : "" ?> <?= $root_path_valid ? "" : "is-invalid" ?>"
+					 size="100" name="root_path" placeholder="root_path" value="<?= $root_path ?>">
 				</div>
 				<div class="col-auto">
-					<span id="" class="form-text"> root path ot media library </span>
+					<span id="" class="form-text"> root path of media library </span>
 				</div>
 				<?php
-				if($root_path_valid === true)
-				{
-					?>
-<!-- 					<div class="valid-feedback d-block">Looks good!</div> -->
-					<?php
-				}
-				else
+				if($root_path_valid !== true)
 				{
 					?>
 					<div class="invalid-feedback d-block">root path is invalid (does not exist, is not a dir, or is not readable)</div>
@@ -36,11 +31,12 @@ require_once __DIR__.'/layout/header.phtml';
 			</div>
 			
 			<?php
-			if($root_path_valid === true){
+			if($root_path_valid === true)
+			{
 				?>
 				<div class="row g-3 align-items-center">
 					<div class="col-auto">
-						<label for="root_path" calss="col-form-label">library</label>
+						<label for="root_path" class="col-form-label">library</label>
 					</div>
 					<div class="col-auto">
 						<select id="" class="form-select" name="library">

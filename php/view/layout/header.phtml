@@ -1,8 +1,8 @@
 	<header>
 		<!-- Fixed navbar -->
-		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+		<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">Music library handler</a>
+				<a class="navbar-brand" href="<?= $BASE . $f3->alias("homepage") ?>">Music library handler</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
 					aria-controls="navbarCollapse" aria-expanded="false"
@@ -10,13 +10,14 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				
-				<div class="collapse navbar-collapse" id="navbarCollapse">
-					<ul class="navbar-nav mb-2 mb-md-0">
-						<li class="nav-item"><a class="nav-link active" aria-current="page"
-							href="#">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-						<li class="nav-item"><a class="nav-link disabled" href="#"
-							tabindex="-1" aria-disabled="true">Disabled</a></li>
+				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Bulk </a>
+							<ul class="dropdown-menu dropdown-menu-dark bg-primary">
+								<li><a class="dropdown-item" href="<?= $BASE . $f3->alias("bulk_rename") ?>">rename</a></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 			</div>

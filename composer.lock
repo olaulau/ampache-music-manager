@@ -4,8 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d4ca4cfc31b5c5107f1819508a4510b5",
+    "content-hash": "ea6b144d42c6503cb1e8a07b42bf6ab7",
     "packages": [
+        {
+            "name": "ampache/ampacheapi-php",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ampache/ampacheapi-php.git",
+                "reference": "b8a9ddb7f62529b980ec2bbfde49d2ac40422c8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ampache/ampacheapi-php/zipball/b8a9ddb7f62529b980ec2bbfde49d2ac40422c8b",
+                "reference": "b8a9ddb7f62529b980ec2bbfde49d2ac40422c8b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AmpacheApi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "description": "Ampache API PHP Library.",
+            "homepage": "https://github.com/ampache/ampacheapi-php",
+            "keywords": [
+                "ampache",
+                "api",
+                "library"
+            ],
+            "support": {
+                "issues": "https://github.com/ampache/ampacheapi-php/issues",
+                "source": "https://github.com/ampache/ampacheapi-php/tree/1.0.3"
+            },
+            "time": "2023-06-29T07:02:29+00:00"
+        },
         {
             "name": "bcosca/fatfree",
             "version": "3.8.1",
@@ -398,5 +438,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

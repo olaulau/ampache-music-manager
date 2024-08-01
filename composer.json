@@ -20,6 +20,7 @@
 	],
 	"require": {
 		"olaulau/htmlskel": "dev-master",
-		"nicmart/tree": "^0.7.1"
+		"nicmart/tree": "^0.7.1",
+		"ampache/ampacheapi-php": "^1.0"
 	}
 }

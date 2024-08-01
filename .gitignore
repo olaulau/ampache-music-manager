@@ -5,3 +5,5 @@
 /vendor/
 /node_modules/
 /tmp/
+
+/ampache_test/conf.php

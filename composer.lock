@@ -4,24 +4,30 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ea6b144d42c6503cb1e8a07b42bf6ab7",
+    "content-hash": "e162fbc1736ab2c2505e9fd90684f4ac",
     "packages": [
         {
             "name": "ampache/ampacheapi-php",
-            "version": "1.0.3",
+            "version": "dev-olaulau-bugfixes",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ampache/ampacheapi-php.git",
-                "reference": "b8a9ddb7f62529b980ec2bbfde49d2ac40422c8b"
+                "url": "https://github.com/olaulau/ampacheapi-php.git",
+                "reference": "b784f6570173914a38a4c364355d973971dbe096"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ampache/ampacheapi-php/zipball/b8a9ddb7f62529b980ec2bbfde49d2ac40422c8b",
-                "reference": "b8a9ddb7f62529b980ec2bbfde49d2ac40422c8b",
+                "url": "https://api.github.com/repos/olaulau/ampacheapi-php/zipball/b784f6570173914a38a4c364355d973971dbe096",
+                "reference": "b784f6570173914a38a4c364355d973971dbe096",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "ext-json": "*",
+                "ext-simplexml": "*",
+                "ext-xml": "*",
+                "php": ">=7.4.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "3.16.0"
             },
             "type": "library",
             "autoload": {
@@ -29,7 +35,6 @@
                     "AmpacheApi\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "AGPL-3.0"
             ],
@@ -41,10 +46,9 @@
                 "library"
             ],
             "support": {
-                "issues": "https://github.com/ampache/ampacheapi-php/issues",
-                "source": "https://github.com/ampache/ampacheapi-php/tree/1.0.3"
+                "source": "https://github.com/olaulau/ampacheapi-php/tree/olaulau-bugfixes"
             },
-            "time": "2023-06-29T07:02:29+00:00"
+            "time": "2024-08-04T10:57:00+00:00"
         },
         {
             "name": "bcosca/fatfree",
@@ -432,7 +436,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "olaulau/htmlskel": 20
+        "olaulau/htmlskel": 20,
+        "ampache/ampacheapi-php": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

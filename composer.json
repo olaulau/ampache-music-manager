@@ -16,15 +16,11 @@
 		{
 			"type": "vcs",
 			"url": "https://github.com/olaulau/HtmlSkel"
-		},
-		{
-            "type": "vcs",
-            "url": "https://github.com/olaulau/ampacheapi-php"
-        }
+		}
 	],
 	"require": {
 		"olaulau/htmlskel": "dev-master",
-		"nicmart/tree": "^0.7.1",
-		"ampache/ampacheapi-php": "dev-olaulau-bugfixes"
+		"nicmart/tree": "*",
+		"ampache/ampacheapi-php": "dev-master"
 	}
 }

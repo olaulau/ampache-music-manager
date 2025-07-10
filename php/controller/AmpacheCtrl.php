@@ -33,11 +33,11 @@ class AmpacheCtrl extends Ctrl
 				'api_secure'		=> $f3->get("ampache.secure"),		// Set to true to use https
 				'api_version'		=> "6",								// Set API response version. 3, 4, 5, 6 (default: 6)
 				'api_format'		=> "json",							// Set API response format. xml, json (default: json)
-				"debug"				=>	true,
+				"debug"				=>	false,
 			]
 		);
 		if ($ampache->state() != 'CONNECTED') {
-			echo "Ampache API client failed to connected.".PHP_EOL;
+			echo "Ampache API client failed to connected." . PHP_EOL;
 			exit;
 		}
 		
@@ -45,46 +45,46 @@ class AmpacheCtrl extends Ctrl
 		$stats = $ampache->info();
 		// var_dump($stats);
 		echo "<h1> STATS </h1>";
-		echo "Catalogs: " . $stats->catalogs . "<br />".PHP_EOL;
-		echo "Artists: " . $stats->artists . "<br />".PHP_EOL;
-		echo "Albums: " . $stats->albums . "<br />".PHP_EOL;
-		echo "Songs: " . $stats->songs . "<br />".PHP_EOL;
-		echo "Playlists: " . $stats->playlists . "<br />".PHP_EOL;
-		//  echo "Videos: " . $stats->videos . "<br />".PHP_EOL;
+		echo "Catalogs: {$stats["catalogs"]} <br />" . PHP_EOL;
+		echo "Artists: " . $stats["artists"] . " <br />" . PHP_EOL;
+		echo "Albums: " . $stats["albums"] . " <br />" . PHP_EOL;
+		echo "Songs: " . $stats["songs"] . " <br />" . PHP_EOL;
+		echo "Playlists: " . $stats["playlists"] . " <br />" . PHP_EOL;
+		echo "Videos: " . $stats["videos"] . " <br />" . PHP_EOL;
+		
 		
 		echo "<hr>";
 
+		
 		echo "<h1> QUERIES </h1>";
 
 		// Get all catalogs
 		$catalogs = $ampache->send_command('catalogs', ["enabled" => "true"]);
-		echo "Catalogs: " . count($catalogs->catalog) . "<br />".PHP_EOL;
-		var_dump($catalogs);
-		// die;
+		// var_dump($catalogs);
+		echo "Catalogs: " . count($catalogs["catalog"]) . " <br />" . PHP_EOL;
 
 		// Get a catalog
-		$res = $ampache->send_command('catalog', ["filter" => "5"]);
-		var_dump($res);
+		$catalog = $ampache->send_command('catalog', ["filter" => "5"]);
+		// var_dump($catalog);
+		echo "Catalog #{$catalog["id"]} : {$catalog["name"]} ({$catalog["path"]}) <br />" . PHP_EOL;
 
-		die;
-
+		
 		// Get all artists
 		$artists = $ampache->send_command('artists');
-		echo "Artists: " . count($artists) . "<br />".PHP_EOL;
-
+		// var_dump($artists); die;
+		echo "Artists: {$artists ["total_count"]} <br />" . PHP_EOL;
+		
 		// Get all albums
 		$albums = $ampache->send_command('albums');
-		echo "Albums: " . count($albums) . "<br />".PHP_EOL;
-
-
+		echo "Albums: {$albums ["total_count"]} <br />" . PHP_EOL;
+		
 		// Get all songs
 		$songs = $ampache->send_command('songs');
-		echo "Songs: " . count($songs) . "<br />".PHP_EOL;
-
+		echo "Songs: {$songs ["total_count"]} <br />" . PHP_EOL;
+		
 		// Get all playlists
 		$playlists = $ampache->send_command('playlists');
-		echo "Playlists: " . count($playlists) . "<br />".PHP_EOL;
-		
+		echo "Playlists: {$playlists ["total_count"]} <br />" . PHP_EOL;
 		
 		$view = new \View();
 		echo $view->render('ampache/test.phtml');

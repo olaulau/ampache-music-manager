@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e162fbc1736ab2c2505e9fd90684f4ac",
+    "content-hash": "53eee18a8d85994c4c759081650c0479",
     "packages": [
         {
             "name": "ampache/ampacheapi-php",
-            "version": "dev-olaulau-bugfixes",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/olaulau/ampacheapi-php.git",
-                "reference": "b784f6570173914a38a4c364355d973971dbe096"
+                "url": "https://github.com/ampache/ampacheapi-php.git",
+                "reference": "af81424be66e03bdba781e46c6ac1f96881c015a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/olaulau/ampacheapi-php/zipball/b784f6570173914a38a4c364355d973971dbe096",
-                "reference": "b784f6570173914a38a4c364355d973971dbe096",
+                "url": "https://api.github.com/repos/ampache/ampacheapi-php/zipball/af81424be66e03bdba781e46c6ac1f96881c015a",
+                "reference": "af81424be66e03bdba781e46c6ac1f96881c015a",
                 "shasum": ""
             },
             "require": {
@@ -27,16 +27,19 @@
                 "php": ">=7.4.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "3.16.0"
+                "friendsofphp/php-cs-fixer": "^3.49",
+                "phpstan/phpstan": "^1.10"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "AmpacheApi\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "AGPL-3.0"
+                "AGPL-3.0-only"
             ],
             "description": "Ampache API PHP Library.",
             "homepage": "https://github.com/ampache/ampacheapi-php",
@@ -46,56 +49,27 @@
                 "library"
             ],
             "support": {
-                "source": "https://github.com/olaulau/ampacheapi-php/tree/olaulau-bugfixes"
+                "issues": "https://github.com/ampache/ampacheapi-php/issues",
+                "source": "https://github.com/ampache/ampacheapi-php/tree/master"
             },
-            "time": "2024-08-04T10:57:00+00:00"
-        },
-        {
-            "name": "bcosca/fatfree",
-            "version": "3.8.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bcosca/fatfree.git",
-                "reference": "3f7741b671accd3aa6d38461203ae5c07e39d58d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bcosca/fatfree/zipball/3f7741b671accd3aa6d38461203ae5c07e39d58d",
-                "reference": "3f7741b671accd3aa6d38461203ae5c07e39d58d",
-                "shasum": ""
-            },
-            "require": {
-                "bcosca/fatfree-core": "^3.8"
-            },
-            "type": "project",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0"
-            ],
-            "description": "A powerful yet easy-to-use PHP micro-framework designed to help you build dynamic and robust Web applications - fast!",
-            "homepage": "http://fatfreeframework.com/",
-            "support": {
-                "issues": "https://github.com/bcosca/fatfree/issues",
-                "source": "https://github.com/bcosca/fatfree/tree/3.8.1"
-            },
-            "time": "2022-11-04T23:22:40+00:00"
+            "time": "2025-07-10T07:50:49+00:00"
         },
         {
             "name": "bcosca/fatfree-core",
-            "version": "3.8.1",
+            "version": "3.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/f3-factory/fatfree-core.git",
-                "reference": "f6ea45472f55a1ecabd4ced74cb56f0efd6af34e"
+                "reference": "227b3b03315ab86b1601d9e9fd8e07efbedf6ab9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/f3-factory/fatfree-core/zipball/f6ea45472f55a1ecabd4ced74cb56f0efd6af34e",
-                "reference": "f6ea45472f55a1ecabd4ced74cb56f0efd6af34e",
+                "url": "https://api.github.com/repos/f3-factory/fatfree-core/zipball/227b3b03315ab86b1601d9e9fd8e07efbedf6ab9",
+                "reference": "227b3b03315ab86b1601d9e9fd8e07efbedf6ab9",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4"
+                "php": ">=7.2"
             },
             "type": "library",
             "autoload": {
@@ -111,36 +85,46 @@
             "homepage": "http://fatfreeframework.com/",
             "support": {
                 "issues": "https://github.com/f3-factory/fatfree-core/issues",
-                "source": "https://github.com/f3-factory/fatfree-core/tree/3.8.1"
+                "source": "https://github.com/f3-factory/fatfree-core/tree/3.9.0"
             },
-            "time": "2022-11-04T23:15:19+00:00"
+            "funding": [
+                {
+                    "url": "https://www.buymeacoffee.com/ikkez",
+                    "type": "buy_me_a_coffee"
+                },
+                {
+                    "url": "https://github.com/ikkez",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-12-31T17:11:04+00:00"
         },
         {
             "name": "components/jquery",
-            "version": "3.6.0",
+            "version": "v3.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/components/jquery.git",
-                "reference": "6cf38ee1fd04b6adf8e7dda161283aa35be818c3"
+                "reference": "8edc7785239bb8c2ad2b83302b856a1d61de60e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/jquery/zipball/6cf38ee1fd04b6adf8e7dda161283aa35be818c3",
-                "reference": "6cf38ee1fd04b6adf8e7dda161283aa35be818c3",
+                "url": "https://api.github.com/repos/components/jquery/zipball/8edc7785239bb8c2ad2b83302b856a1d61de60e7",
+                "reference": "8edc7785239bb8c2ad2b83302b856a1d61de60e7",
                 "shasum": ""
             },
             "type": "component",
             "extra": {
                 "component": {
-                    "scripts": [
-                        "jquery.js"
-                    ],
                     "files": [
                         "jquery.min.js",
                         "jquery.min.map",
                         "jquery.slim.js",
                         "jquery.slim.min.js",
                         "jquery.slim.min.map"
+                    ],
+                    "scripts": [
+                        "jquery.js"
                     ]
                 }
             },
@@ -162,7 +146,7 @@
                 "source": "https://github.com/jquery/jquery",
                 "wiki": "http://docs.jquery.com/"
             },
-            "time": "2021-03-20T19:13:42+00:00"
+            "time": "2023-09-22T01:43:46+00:00"
         },
         {
             "name": "components/jqueryui",
@@ -185,20 +169,20 @@
             "extra": {
                 "component": {
                     "name": "jquery-ui",
-                    "scripts": [
-                        "jquery-ui.js"
-                    ],
-                    "files": [
-                        "ui/**",
-                        "themes/**",
-                        "jquery-ui.min.js"
-                    ],
                     "shim": {
                         "deps": [
                             "jquery"
                         ],
                         "exports": "jQuery"
-                    }
+                    },
+                    "files": [
+                        "ui/**",
+                        "themes/**",
+                        "jquery-ui.min.js"
+                    ],
+                    "scripts": [
+                        "jquery-ui.js"
+                    ]
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -255,16 +239,16 @@
         },
         {
             "name": "fortawesome/font-awesome",
-            "version": "6.4.0",
+            "version": "6.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "0698449d50f2b95517562295a59d414afc68b369"
+                "reference": "af620534bfc3c2d4cbefcfeec29603bbe7809e64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/0698449d50f2b95517562295a59d414afc68b369",
-                "reference": "0698449d50f2b95517562295a59d414afc68b369",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/af620534bfc3c2d4cbefcfeec29603bbe7809e64",
+                "reference": "af620534bfc3c2d4cbefcfeec29603bbe7809e64",
                 "shasum": ""
             },
             "type": "library",
@@ -296,34 +280,225 @@
                 "issues": "https://github.com/FortAwesome/Font-Awesome/issues",
                 "source": "https://github.com/FortAwesome/Font-Awesome"
             },
-            "time": "2023-03-27T16:58:41+00:00"
+            "time": "2024-12-16T21:31:56+00:00"
         },
         {
-            "name": "nicmart/tree",
-            "version": "0.7.1",
+            "name": "ikkez/f3-cortex",
+            "version": "v1.7.8",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nicmart/Tree.git",
-                "reference": "1e00b25e65fc956cc2d089b640b951763bdcbbaf"
+                "url": "https://github.com/ikkez/f3-cortex.git",
+                "reference": "79468b7a04695ad343b2f4d7dbdbe575a6b08a35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nicmart/Tree/zipball/1e00b25e65fc956cc2d089b640b951763bdcbbaf",
-                "reference": "1e00b25e65fc956cc2d089b640b951763bdcbbaf",
+                "url": "https://api.github.com/repos/ikkez/f3-cortex/zipball/79468b7a04695ad343b2f4d7dbdbe575a6b08a35",
+                "reference": "79468b7a04695ad343b2f4d7dbdbe575a6b08a35",
                 "shasum": ""
             },
             "require": {
-                "php": "~8.0.0 || ~8.1.0 || ~8.2.0"
+                "ikkez/f3-schema-builder": "2.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "description": "A multi-engine ORM / ODM for the PHP Fat-Free Framework",
+            "homepage": "https://github.com/ikkez/f3-cortex",
+            "keywords": [
+                "F3",
+                "fatfree",
+                "mongo",
+                "orm",
+                "sql"
+            ],
+            "support": {
+                "issues": "https://github.com/ikkez/f3-cortex/issues",
+                "source": "https://github.com/ikkez/f3-cortex/tree/v1.7.8"
+            },
+            "funding": [
+                {
+                    "url": "https://www.buymeacoffee.com/ikkez",
+                    "type": "buy_me_a_coffee"
+                },
+                {
+                    "url": "https://github.com/ikkez",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-02-25T00:25:02+00:00"
+        },
+        {
+            "name": "ikkez/f3-falsum",
+            "version": "v2.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ikkez/f3-falsum.git",
+                "reference": "cf2a855b41ab69349527b631adb844e761506ece"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ikkez/f3-falsum/zipball/cf2a855b41ab69349527b631adb844e761506ece",
+                "reference": "cf2a855b41ab69349527b631adb844e761506ece",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "suggest": {
+                "symfony/var-dumper": "Pretty print complex values better with var-dumper available"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Falsum\\": "src/Falsum/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rafael Morais dos Santos",
+                    "homepage": "https://ra.fael.ml",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Christian Knuth",
+                    "homepage": "https://ikkez.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pretty error handling for Fat-Free Framework",
+            "homepage": "https://github.com/ikkez/f3-falsum",
+            "keywords": [
+                "F3",
+                "error",
+                "exception",
+                "falsum",
+                "fat-free framework",
+                "handling",
+                "library"
+            ],
+            "support": {
+                "issues": "https://github.com/ikkez/f3-falsum/issues",
+                "source": "https://github.com/ikkez/f3-falsum/tree/v2.8.1"
+            },
+            "time": "2020-12-06T18:29:00+00:00"
+        },
+        {
+            "name": "ikkez/f3-schema-builder",
+            "version": "v2.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ikkez/f3-schema-builder.git",
+                "reference": "1fc4cf37e4683037d35a8536232bcacbf7f4dd0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ikkez/f3-schema-builder/zipball/1fc4cf37e4683037d35a8536232bcacbf7f4dd0b",
+                "reference": "1fc4cf37e4683037d35a8536232bcacbf7f4dd0b",
+                "shasum": ""
+            },
+            "require": {
+                "bcosca/fatfree-core": "^3.6"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "description": "SQL Schema Builder Plugin for PHP Fat-Free Framework",
+            "homepage": "https://github.com/ikkez/f3-schema-builder",
+            "keywords": [
+                "F3",
+                "fatfree",
+                "sql"
+            ],
+            "support": {
+                "issues": "https://github.com/ikkez/f3-schema-builder/issues",
+                "source": "https://github.com/ikkez/f3-schema-builder/tree/v2.2.6"
+            },
+            "time": "2023-02-13T19:12:50+00:00"
+        },
+        {
+            "name": "ikkez/f3-validation-engine",
+            "version": "v1.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ikkez/f3-validation-engine.git",
+                "reference": "2338f8ad05bf80af7b4b699981c04b30d461d918"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ikkez/f3-validation-engine/zipball/2338f8ad05bf80af7b4b699981c04b30d461d918",
+                "reference": "2338f8ad05bf80af7b4b699981c04b30d461d918",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "description": "Validation engine for Cortex and the PHP Fat-Free Framework",
+            "homepage": "https://github.com/ikkez/f3-validation-engine",
+            "keywords": [
+                "F3",
+                "GUMP",
+                "cortex",
+                "fatfree",
+                "model",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/ikkez/f3-validation-engine/issues",
+                "source": "https://github.com/ikkez/f3-validation-engine/tree/v1.7.3"
+            },
+            "time": "2023-01-23T22:06:35+00:00"
+        },
+        {
+            "name": "nicmart/tree",
+            "version": "0.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicmart/Tree.git",
+                "reference": "f5e17bf18d78cfb0666ebb9f956c3acd8d14229d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicmart/Tree/zipball/f5e17bf18d78cfb0666ebb9f956c3acd8d14229d",
+                "reference": "f5e17bf18d78cfb0666ebb9f956c3acd8d14229d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0"
             },
             "require-dev": {
-                "ergebnis/composer-normalize": "^2.29.0",
-                "ergebnis/license": "^2.1.0",
-                "ergebnis/php-cs-fixer-config": "^5.3.1",
-                "fakerphp/faker": "^1.21.0",
+                "ergebnis/composer-normalize": "^2.44.0",
+                "ergebnis/license": "^2.6.0",
+                "ergebnis/php-cs-fixer-config": "^6.28.1",
+                "fakerphp/faker": "^1.24.1",
                 "infection/infection": "~0.26.19",
-                "phpunit/phpunit": "^9.6.3",
-                "psalm/plugin-phpunit": "~0.18.4",
-                "vimeo/psalm": "^5.7.5"
+                "phpunit/phpunit": "^9.6.19",
+                "psalm/plugin-phpunit": "~0.19.0",
+                "vimeo/psalm": "^5.26.1"
             },
             "type": "library",
             "autoload": {
@@ -348,9 +523,9 @@
             "description": "A basic but flexible php tree data structure and a fluent tree builder implementation.",
             "support": {
                 "issues": "https://github.com/nicmart/Tree/issues",
-                "source": "https://github.com/nicmart/Tree/tree/0.7.1"
+                "source": "https://github.com/nicmart/Tree/tree/0.9.0"
             },
-            "time": "2023-02-24T15:10:48+00:00"
+            "time": "2024-11-22T15:36:01+00:00"
         },
         {
             "name": "olaulau/htmlskel",
@@ -358,19 +533,23 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/olaulau/HtmlSkel.git",
-                "reference": "0b2d32b9ce03abc71b8abbea36a4619bbd358ba6"
+                "reference": "33f44fedf3da544d02b609bc923726ccf3c7af14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/olaulau/HtmlSkel/zipball/0b2d32b9ce03abc71b8abbea36a4619bbd358ba6",
-                "reference": "0b2d32b9ce03abc71b8abbea36a4619bbd358ba6",
+                "url": "https://api.github.com/repos/olaulau/HtmlSkel/zipball/33f44fedf3da544d02b609bc923726ccf3c7af14",
+                "reference": "33f44fedf3da544d02b609bc923726ccf3c7af14",
                 "shasum": ""
             },
             "require": {
-                "bcosca/fatfree": "^3",
+                "bcosca/fatfree-core": "^3.8",
                 "components/jquery": "^3",
                 "components/jqueryui": "^1",
                 "fortawesome/font-awesome": "^6",
+                "ikkez/f3-cortex": "1.*",
+                "ikkez/f3-falsum": "^2.8",
+                "ikkez/f3-validation-engine": "^1.7",
+                "select2/select2": "^4.0",
                 "twbs/bootstrap": "^5"
             },
             "default-branch": true,
@@ -379,20 +558,62 @@
                 "source": "https://github.com/olaulau/HtmlSkel/tree/master",
                 "issues": "https://github.com/olaulau/HtmlSkel/issues"
             },
-            "time": "2022-04-21T16:17:41+00:00"
+            "time": "2025-03-18T16:09:39+00:00"
         },
         {
-            "name": "twbs/bootstrap",
-            "version": "v5.3.0",
+            "name": "select2/select2",
+            "version": "4.0.13",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "60098ac499d30aa50575b0b7137391c06ef25429"
+                "url": "https://github.com/select2/select2.git",
+                "reference": "45f2b83ceed5231afa7b3d5b12b58ad335edd82e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/60098ac499d30aa50575b0b7137391c06ef25429",
-                "reference": "60098ac499d30aa50575b0b7137391c06ef25429",
+                "url": "https://api.github.com/repos/select2/select2/zipball/45f2b83ceed5231afa7b3d5b12b58ad335edd82e",
+                "reference": "45f2b83ceed5231afa7b3d5b12b58ad335edd82e",
+                "shasum": ""
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "files": [
+                        "dist/js/select2.js",
+                        "dist/js/i18n/*.js",
+                        "dist/css/select2.css"
+                    ],
+                    "styles": [
+                        "dist/css/select2.css"
+                    ],
+                    "scripts": [
+                        "dist/js/select2.js"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Select2 is a jQuery based replacement for select boxes.",
+            "homepage": "https://select2.org/",
+            "support": {
+                "issues": "https://github.com/select2/select2/issues",
+                "source": "https://github.com/select2/select2/tree/4.0.13"
+            },
+            "time": "2020-01-28T05:01:22+00:00"
+        },
+        {
+            "name": "twbs/bootstrap",
+            "version": "v5.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap.git",
+                "reference": "e0032ae6a5a628a51a8552091816cec09b6434df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/e0032ae6a5a628a51a8552091816cec09b6434df",
+                "reference": "e0032ae6a5a628a51a8552091816cec09b6434df",
                 "shasum": ""
             },
             "replace": {
@@ -427,21 +648,21 @@
             ],
             "support": {
                 "issues": "https://github.com/twbs/bootstrap/issues",
-                "source": "https://github.com/twbs/bootstrap/tree/v5.3.0"
+                "source": "https://github.com/twbs/bootstrap/tree/v5.3.7"
             },
-            "time": "2023-05-30T15:15:55+00:00"
+            "time": "2025-06-10T15:44:49+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "olaulau/htmlskel": 20,
-        "ampache/ampacheapi-php": 20
+        "ampache/ampacheapi-php": 20,
+        "olaulau/htmlskel": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
+    "platform": {},
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

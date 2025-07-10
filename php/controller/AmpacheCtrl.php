@@ -19,17 +19,19 @@ class AmpacheCtrl extends Ctrl
 	}
 
 	
-	public static function testGET ()
+	static function debug_event () {}
+	
+	
+	public static function statsGET ()
 	{
 		$f3 = \Base::instance();
 		
-		function debug_event () {}
 		$ampache = new AmpacheApi (
 			[
 				'username'			=> $f3->get("ampache.username"),	// Username
 				'password'			=> $f3->get("ampache.password"),	// Password
 				'server'			=> $f3->get("ampache.hostname"),	// Server address, without http/https prefix
-				'debug_callback'	=> 'controller\debug_event',		// server callback function
+				'debug_callback'	=> self::class . '::debug_event',	// server callback function
 				'api_secure'		=> $f3->get("ampache.secure"),		// Set to true to use https
 				'api_version'		=> "6",								// Set API response version. 3, 4, 5, 6 (default: 6)
 				'api_format'		=> "json",							// Set API response format. xml, json (default: json)
@@ -37,7 +39,7 @@ class AmpacheCtrl extends Ctrl
 			]
 		);
 		if ($ampache->state() != 'CONNECTED') {
-			echo "Ampache API client failed to connected." . PHP_EOL;
+			echo "Ampache API client failed to connect." . PHP_EOL;
 			exit;
 		}
 		
@@ -45,6 +47,7 @@ class AmpacheCtrl extends Ctrl
 		$stats = $ampache->info();
 		// var_dump($stats);
 		echo "<h1> STATS </h1>";
+		
 		echo "Catalogs: {$stats["catalogs"]} <br />" . PHP_EOL;
 		echo "Artists: " . $stats["artists"] . " <br />" . PHP_EOL;
 		echo "Albums: " . $stats["albums"] . " <br />" . PHP_EOL;
@@ -56,7 +59,7 @@ class AmpacheCtrl extends Ctrl
 		echo "<hr>";
 
 		
-		echo "<h1> QUERIES </h1>";
+		echo "<h1> QUERY ALL </h1>";
 
 		// Get all catalogs
 		$catalogs = $ampache->send_command('catalogs', ["enabled" => "true"]);
@@ -71,7 +74,6 @@ class AmpacheCtrl extends Ctrl
 		
 		// Get all artists
 		$artists = $ampache->send_command('artists');
-		// var_dump($artists); die;
 		echo "Artists: {$artists ["total_count"]} <br />" . PHP_EOL;
 		
 		// Get all albums
@@ -81,13 +83,64 @@ class AmpacheCtrl extends Ctrl
 		// Get all songs
 		$songs = $ampache->send_command('songs');
 		echo "Songs: {$songs ["total_count"]} <br />" . PHP_EOL;
+		var_dump($songs ["song"] [0]);
+		die;
 		
 		// Get all playlists
 		$playlists = $ampache->send_command('playlists');
 		echo "Playlists: {$playlists ["total_count"]} <br />" . PHP_EOL;
 		
-		$view = new \View();
-		echo $view->render('ampache/test.phtml');
+		// $view = new \View();
+		// echo $view->render('ampache/stats.phtml');
+	}
+	
+	
+	public static function navigateGET ()
+	{
+		$f3 = \Base::instance();
+		
+		$ampache = new AmpacheApi (
+			[
+				'username'			=> $f3->get("ampache.username"),	// Username
+				'password'			=> $f3->get("ampache.password"),	// Password
+				'server'			=> $f3->get("ampache.hostname"),	// Server address, without http/https prefix
+				'debug_callback'	=> self::class . '::debug_event',	// server callback function
+				'api_secure'		=> $f3->get("ampache.secure"),		// Set to true to use https
+				'api_version'		=> "6",								// Set API response version. 3, 4, 5, 6 (default: 6)
+				'api_format'		=> "json",							// Set API response format. xml, json (default: json)
+				"debug"				=>	false,
+			]
+		);
+		if ($ampache->state() != 'CONNECTED') {
+			echo "Ampache API client failed to connect." . PHP_EOL;
+			exit;
+		}
+		
+		$song_id = 61852;
+		
+		// query a song by its id
+		echo "<h2> song </h2>" . PHP_EOL;
+		$song = $ampache->send_command('song', ["filter" => $song_id]);
+		var_dump($song);
+		$artist_id = $song ["artist"] ["id"];
+		$album_id = $song ["album"] ["id"];
+		
+		// query album by its id
+		echo "<h2> album </h2>" . PHP_EOL;
+		$album = $ampache->send_command('album', ["filter" => $album_id]);
+		var_dump($album);
+		
+		// query artist by its id
+		echo "<h2> artist </h2>" . PHP_EOL;
+		$artist = $ampache->send_command('artist', ["filter" => $artist_id]);
+		var_dump($artist);
+		
+		// get album songs
+		echo "<h2> album songs </h2>" . PHP_EOL;
+		$songs = $ampache->send_command('album_songs', ["filter" => $album_id]);
+		var_dump($songs);
+		
+		die;
 	}
 	
 }

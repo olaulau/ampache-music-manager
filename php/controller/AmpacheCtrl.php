@@ -2,6 +2,13 @@
 namespace controller;
 
 use AmpacheApi\AmpacheApi;
+use Base;
+use Cache;
+use DB\CortexCollection;
+use DB\SQL;
+use model\Catalog;
+use model\CatalogLocal;
+use View;
 
 
 class AmpacheCtrl extends Ctrl
@@ -28,11 +35,11 @@ class AmpacheCtrl extends Ctrl
 		
 		$ampache = new AmpacheApi (
 			[
-				'username'			=> $f3->get("ampache.username"),	// Username
-				'password'			=> $f3->get("ampache.password"),	// Password
-				'server'			=> $f3->get("ampache.hostname"),	// Server address, without http/https prefix
+				'username'			=> $f3->get("ampache.api.username"),	// Username
+				'password'			=> $f3->get("ampache.api.password"),	// Password
+				'server'			=> $f3->get("ampache.api.hostname"),	// Server address, without http/https prefix
 				'debug_callback'	=> self::class . '::debug_event',	// server callback function
-				'api_secure'		=> $f3->get("ampache.secure"),		// Set to true to use https
+				'api_secure'		=> $f3->get("ampache.api.secure"),		// Set to true to use https
 				'api_version'		=> "6",								// Set API response version. 3, 4, 5, 6 (default: 6)
 				'api_format'		=> "json",							// Set API response format. xml, json (default: json)
 				"debug"				=>	false,
@@ -141,6 +148,40 @@ class AmpacheCtrl extends Ctrl
 		var_dump($songs);
 		
 		die;
+	}
+	
+	
+	public static function testGET ()
+	{
+		$f3 = Base::instance();
+		$cache = Cache::instance();
+		
+		# get ampache conf
+		$ampache_server_path = $f3->get("ampache.server.path");
+		$ampache_conf_file = "{$ampache_server_path}/config/ampache.cfg.php";
+		$ampache_conf = parse_ini_file($ampache_conf_file);
+		
+		# connect its DB
+		$db = new SQL("mysql:host={$ampache_conf["database_hostname"]};port={$ampache_conf["database_port"]};dbname={$ampache_conf["database_name"]}", $ampache_conf["database_username"], $ampache_conf["database_password"]);
+		$f3->set("db", $db);
+		
+		# do stuff
+		$catalog_wrapper = new Catalog();
+		$catalogs = $catalog_wrapper->find([], []); /** @var CortexCollection $catalogs */
+		var_dump($catalogs->castAll());
+		
+		$catalog_local_wrapper = new CatalogLocal();
+		$catalogs_local = $catalog_local_wrapper->find([], []); /** @var CortexCollection $catalogs_local */
+		var_dump($catalogs_local->castAll());
+		
+		
+		
+		
+		
+		die;
+		
+		$view = new View();
+		echo $view->render('ampache/test.phtml');
 	}
 	
 }

@@ -12,17 +12,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ampache/ampacheapi-php.git",
-                "reference": "af81424be66e03bdba781e46c6ac1f96881c015a"
+                "reference": "a19770526ea6135721c7b53a11ca6499cf889650"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ampache/ampacheapi-php/zipball/af81424be66e03bdba781e46c6ac1f96881c015a",
-                "reference": "af81424be66e03bdba781e46c6ac1f96881c015a",
+                "url": "https://api.github.com/repos/ampache/ampacheapi-php/zipball/a19770526ea6135721c7b53a11ca6499cf889650",
+                "reference": "a19770526ea6135721c7b53a11ca6499cf889650",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "ext-simplexml": "*",
                 "ext-xml": "*",
                 "php": ">=7.4.0"
             },
@@ -52,7 +51,7 @@
                 "issues": "https://github.com/ampache/ampacheapi-php/issues",
                 "source": "https://github.com/ampache/ampacheapi-php/tree/master"
             },
-            "time": "2025-07-10T07:50:49+00:00"
+            "time": "2025-07-14T05:46:29+00:00"
         },
         {
             "name": "bcosca/fatfree-core",

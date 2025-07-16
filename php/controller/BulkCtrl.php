@@ -1,8 +1,11 @@
 <?php
 namespace controller;
 
+use Base;
+use Cache;
 use \classes\FsTree;
 use Tree\Node\Node;
+use View;
 
 class BulkCtrl extends Ctrl
 {
@@ -23,29 +26,25 @@ class BulkCtrl extends Ctrl
 	{
 		foreach ($node->getChildren() as $child)
 		{
-			if(!$child->isLeaf())
-			{
+			if(!$child->isLeaf()) {
 				self::renameFilterTree($child, $search);
 			}
-			elseif($child->getDepth() !== 3) // ?
-			{
+			elseif($child->getDepth() !== 3) { // ?
 				$node->removeChild($child);
 			}
-			elseif(!str_contains($child->getValue(), $search))
-			{
+			elseif(!str_contains($child->getValue(), $search)) {
 				$node->removeChild($child);
 			}
 		}
-		if($node->isLeaf() && !$node->isRoot() && $node->getDepth() !== 3)
-		{
+		if($node->isLeaf() && !$node->isRoot() && $node->getDepth() !== 3) {
 			$node->getParent()->removeChild($node);
 		}
 	}
 	
 	public static function renameGET ()
 	{
-		$f3 = \Base::instance();
-		$cache = \Cache::instance();
+		$f3 = Base::instance();
+		$cache = Cache::instance();
 		
 		$root_path = $cache->get("config.root_path");
 		$library = $cache->get("config.library");
@@ -58,7 +57,7 @@ class BulkCtrl extends Ctrl
 			self::renameFilterTree($fst, $search_text);
 		$f3->set("fst", $fst);
 		
-		$view = new \View();
+		$view = new View();
 		echo $view->render('bulk/rename.phtml');
 	}
 	

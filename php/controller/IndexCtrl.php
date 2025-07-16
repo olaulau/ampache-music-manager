@@ -1,7 +1,10 @@
 <?php
 namespace controller;
 
+use Base;
+use Cache;
 use \classes\FsTree;
+use View;
 
 class IndexCtrl extends Ctrl
 {
@@ -20,12 +23,12 @@ class IndexCtrl extends Ctrl
 	
 	public static function indexGET ()
 	{
-		$f3 = \Base::instance();
-		$cache = \Cache::instance();
+		$f3 = Base::instance();
+		$cache = Cache::instance();
 		
 		$root_path = $cache->get("config.root_path");
 		$f3->set("root_path", $root_path);
-		$root_path_valid = \file_exists($root_path) && is_dir($root_path) && \is_readable($root_path);
+		$root_path_valid = file_exists($root_path) && is_dir($root_path) && is_readable($root_path);
 		$f3->set("root_path_valid", $root_path_valid);
 		
 		if($root_path_valid === true)
@@ -39,15 +42,15 @@ class IndexCtrl extends Ctrl
 			$f3->set("library", $library);
 		}
 		
-		$view = new \View();
+		$view = new View();
 		echo $view->render('index.phtml');
 	}
 	
 	
 	public static function indexPOST ()
 	{
-		$f3 = \Base::instance();
-		$cache = \Cache::instance();
+		$f3 = Base::instance();
+		$cache = Cache::instance();
 		
 		$root_path = $f3->get("REQUEST.root_path");
 		if(!empty($root_path))

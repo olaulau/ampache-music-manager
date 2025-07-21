@@ -38,10 +38,10 @@ class AmpacheCtrl extends Ctrl
 				'username'			=> $f3->get("ampache.api.username"),	// Username
 				'password'			=> $f3->get("ampache.api.password"),	// Password
 				'server'			=> $f3->get("ampache.api.hostname"),	// Server address, without http/https prefix
-				'debug_callback'	=> self::class . '::debug_event',	// server callback function
+				'debug_callback'	=> self::class . '::debug_event',		// server callback function
 				'api_secure'		=> $f3->get("ampache.api.secure"),		// Set to true to use https
-				'api_version'		=> "6",								// Set API response version. 3, 4, 5, 6 (default: 6)
-				'api_format'		=> "json",							// Set API response format. xml, json (default: json)
+				'api_version'		=> "6",									// Set API response version. 3, 4, 5, 6 (default: 6)
+				'api_format'		=> "json",								// Set API response format. xml, json (default: json)
 				"debug"				=>	false,
 			]
 		);
@@ -169,15 +169,6 @@ class AmpacheCtrl extends Ctrl
 		$catalog_wrapper = new Catalog();
 		$catalogs = $catalog_wrapper->find([], []); /** @var CortexCollection $catalogs */
 		var_dump($catalogs->castAll());
-		
-		$catalog_local_wrapper = new CatalogLocal();
-		$catalogs_local = $catalog_local_wrapper->find([], []); /** @var CortexCollection $catalogs_local */
-		var_dump($catalogs_local->castAll());
-		
-		
-		
-		
-		
 		die;
 		
 		$view = new View();

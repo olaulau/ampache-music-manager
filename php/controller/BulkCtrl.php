@@ -51,11 +51,13 @@ class BulkCtrl extends Ctrl
 		$library_base = $root_path . DIRECTORY_SEPARATOR . $library;
 		
 		$search_text =  $f3->get("REQUEST.search_text");
-		$fst = new FsTree($library_base);
-		$fst->scan("is_dir", 3);
-		if(!empty($search_text))
-			self::renameFilterTree($fst, $search_text);
-		$f3->set("fst", $fst);
+		if(!empty($search_text)) {
+			$fst = new FsTree($library_base);
+			$fst->scan("is_dir", 3);
+			if(!empty($search_text))
+				self::renameFilterTree($fst, $search_text);
+			$f3->set("fst", $fst);
+		}
 		
 		$view = new View();
 		echo $view->render('bulk/rename.phtml');

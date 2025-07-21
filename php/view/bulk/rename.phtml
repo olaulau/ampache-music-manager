@@ -46,8 +46,9 @@ require_once __DIR__.'/../layout/header.phtml';
 	<main role="main" class="container-fluid">
 	<?php
 	if(!empty($fst))
-	{ /* @var \classes\FsTree $fst */
-	?>
+	{
+		/** @var \classes\FsTree $fst */
+		?>
 		<table class="table table-dbordered">
 			<tr>
 				<th style="width: 50%;">old album name</th>
@@ -74,8 +75,7 @@ require_once __DIR__.'/../layout/header.phtml';
 			}
 			?>
 		</table>
-		
-	<?php
+		<?php
 	}
 	?>
 	</main>

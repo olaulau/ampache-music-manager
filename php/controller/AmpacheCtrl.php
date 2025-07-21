@@ -167,9 +167,8 @@ class AmpacheCtrl extends Ctrl
 		
 		# do stuff
 		$catalog_wrapper = new Catalog();
-		$catalogs = $catalog_wrapper->find([], []); /** @var CortexCollection $catalogs */
-		var_dump($catalogs->castAll());
-		die;
+		$catalogs = $catalog_wrapper->find([], []);
+		$f3->set("catalogs", $catalogs);
 		
 		$view = new View();
 		echo $view->render('ampache/test.phtml');

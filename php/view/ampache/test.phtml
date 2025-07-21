@@ -1,4 +1,7 @@
 <?php
+
+use model\Catalog;
+
 require_once __DIR__.'/../layout/head.phtml';
 ?>
 
@@ -7,6 +10,52 @@ require_once __DIR__.'/../layout/header.phtml';
 ?>
 
 	<main role="main" class="container-fluid bg-info">
+		<form action="" method="get">
+			<div class="row g-3 align-items-center">
+				<div class="col-auto">
+					<label for="src_catalog" class="col-form-label">source catalog</label>
+				</div>
+				<div class="col-auto">
+					<select class="form-select" name="src_catalog">
+						<option value=""></option>
+						<?php
+						foreach ($catalogs as $catalog) {
+							?>
+							<option value="<?= $catalog->id ?>" <?= ($catalog->id == $f3->get("REQUEST.src_catalog")) ? "selected" : "" ?>><?= $catalog->name ?></option>
+							<?php
+						}
+						?>
+					</select>
+				</div>
+				
+				<div class="col-auto">
+					<i class="fa-solid fa-right-long"></i>
+				</div>
+
+				<div class="col-auto">
+					<label for="dest_catalog" class="col-form-label">destination catalog</label>
+				</div>
+				<div class="col-auto">
+					<select class="form-select" name="dest_catalog">
+						<option value=""></option>
+						<?php
+						foreach ($catalogs as $catalog) {
+							?>
+							<option value="<?= $catalog->id ?>" <?= ($catalog->id == $f3->get("REQUEST.dest_catalog")) ? "selected" : "" ?>><?= $catalog->name ?></option>
+							<?php
+						}
+						?>
+					</select>
+				</div>
+
+				<div class="col-auto">
+					<button class="btn btn-success" type="submit">compare</button>
+				</div>
+			</div>
+		</form>
+	</main>
+	
+	<main role="main" class="container-fluid">
 		
 	</main>
 	

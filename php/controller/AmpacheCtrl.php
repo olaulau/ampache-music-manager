@@ -153,7 +153,7 @@ class AmpacheCtrl extends Ctrl
 	}
 	
 	
-	public static function testGET ()
+	public static function albumCompareGET ()
 	{
 		$f3 = Base::instance();
 		
@@ -191,7 +191,7 @@ class AmpacheCtrl extends Ctrl
 					FROM	album al2
 					WHERE	catalog = ?
 				)
-				ORDER BY ar.name, al.prefix, al.name
+				ORDER BY ar.prefix, ar.name, al.prefix, al.name
 			";
 			$params = [$src_catalog_id, $dest_catalog_id];
 			$albums = (new Album)->findByRawSQL($sql, $params);
@@ -209,7 +209,7 @@ class AmpacheCtrl extends Ctrl
 		}
 		
 		$view = new View();
-		echo $view->render('ampache/test.phtml');
+		echo $view->render('ampache/albumCompare.phtml');
 	}
 	
 }

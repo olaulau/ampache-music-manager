@@ -55,26 +55,33 @@ require_once __DIR__.'/../layout/header.phtml';
 		</form>
 	</main>
 	
-	<main role="main" class="container-fluid">
-		<ul>
-			<?php
-			foreach ($albums_by_artist as $artist_id => $albums) {
-				?>
-				<li><?= $artists [$artist_id] -> name ?></li>
-				<ul>
-					<?php
-					foreach ($albums as $album) {
-						?>
-						<li><?= $album -> name ?></li>
-						<?php
-					}
-					?>
-				</ul>
+	<?php
+	if(!empty($albums_by_artist)) {
+		?>
+		<main role="main" class="container-fluid">
+			<ul>
 				<?php
-			}
-			?>
-		</ul>
-	</main>
+				foreach ($albums_by_artist as $artist_id => $albums) {
+					$artist = $artists [$artist_id];
+					?>
+					<li><?= $artist -> prefix ?> <?= $artist -> name ?></li>
+					<ul>
+						<?php
+						foreach ($albums as $album) {
+							?>
+							<li><?= $album -> name ?></li>
+							<?php
+						}
+						?>
+					</ul>
+					<?php
+				}
+				?>
+			</ul>
+		</main>
+		<?php
+	}
+	?>
 	
 <?php
 require_once __DIR__.'/../layout/footer.phtml';

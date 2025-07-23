@@ -1,5 +1,6 @@
 <?php
 
+use DB\CortexCollection;
 use model\Catalog;
 
 require_once __DIR__.'/../layout/head.phtml';
@@ -70,6 +71,17 @@ require_once __DIR__.'/../layout/header.phtml';
 						foreach ($albums as $album) {
 							?>
 							<li><?= $album -> name ?></li>
+							<ul>
+								<?php
+								$songs = $album->songs; /** @var CortexCollection $songs */
+								$songs->orderBy("track ASC");
+								foreach ($songs as $song) {
+									?>
+									<li><?= $song->track ?> : <?= $song->title ?> (<?= $song->time ?>) [ <?= $song->file ?> ] (<?= $song->size ?>) <?= $song->mode ?> <?= $song->bitrate ?></li>
+									<?php
+								}
+								?>
+							</ul>
 							<?php
 						}
 						?>

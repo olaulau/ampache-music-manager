@@ -3,14 +3,10 @@ namespace controller;
 
 use AmpacheApi\AmpacheApi;
 use Base;
-use Cache;
-use DB\CortexCollection;
 use DB\SQL;
 use ErrorException;
 use model\Album;
 use model\Catalog;
-use model\CatalogLocal;
-use model\Mdl;
 use View;
 
 
@@ -211,6 +207,15 @@ class AmpacheCtrl extends Ctrl
 		
 		$view = new View();
 		echo $view->render('ampache/albumCompare.phtml');
+	}
+	
+	
+	public static function albumComparePOST (Base $f3 /* ... */)
+	{
+		$post = $f3->get("POST");
+		var_dump($post);
+		die;
+		
 	}
 	
 }

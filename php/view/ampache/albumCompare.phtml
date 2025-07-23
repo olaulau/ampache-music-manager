@@ -1,4 +1,6 @@
 <?php
+
+use classes\Stuff;
 use DB\CortexCollection;
 
 require_once __DIR__.'/../layout/head.phtml';
@@ -65,8 +67,8 @@ require_once __DIR__.'/../layout/header.phtml';
 			<form action="" method="post" id="form-select-songs">
 				<ul>
 					<li>
-						<input type="checkbox" class="form-check-input" style="" id="catalog_<?= $src_catalog->id ?>" name="catalog[<?= $src_catalog->id ?>]">
-						<label for="catalog_<?= $src_catalog->id ?>">
+						<input type="checkbox" class="form-check-input" style="" id="catalog[<?= $src_catalog->id ?>]" name="catalog[<?= $src_catalog->id ?>]">
+						<label for="catalog[<?= $src_catalog->id ?>]">
 							<i class="fa-solid fa-book"></i>
 							<span title="<?= $src_catalog->catalogLocal->path ?>"><?= $src_catalog-> name ?></span>
 						</label>
@@ -77,8 +79,8 @@ require_once __DIR__.'/../layout/header.phtml';
 							$artist = $artists [$artist_id];
 							?>
 							<li>
-								<input type="checkbox" class="form-check-input" style="" id="artist_<?= $artist->id ?>" name="artist[<?= $artist->id ?>]">
-								<label for="artist_<?= $artist->id ?>">
+								<input type="checkbox" class="form-check-input" style="" id="artist[<?= $artist->id ?>]" name="artist[<?= $artist->id ?>]">
+								<label for="artist[<?= $artist->id ?>]">
 									<i class="fa-solid fa-people-group"></i>
 									<?= $artist -> prefix ?> <?= $artist -> name ?>	
 								</label>
@@ -90,8 +92,8 @@ require_once __DIR__.'/../layout/header.phtml';
 								foreach ($albums as $album) {
 									?>
 									<li>
-										<input type="checkbox" class="form-check-input" style="" id="album_<?= $album->id ?>" name="[<?= $album->id ?>]">
-										<label for="album_<?= $album->id ?>">
+										<input type="checkbox" class="form-check-input" style="" id="album[<?= $album->id ?>]" name="album[<?= $album->id ?>]">
+										<label for="album[<?= $album->id ?>]">
 											<i class="fa-solid fa-record-vinyl"></i>
 											(<?= $album -> year ?>) <?= $album -> name ?>
 										</label>
@@ -103,10 +105,11 @@ require_once __DIR__.'/../layout/header.phtml';
 										foreach ($songs as $song) {
 											?>
 											<li>
-												<input type="checkbox" class="form-check-input" style="" id="song_<?= $song->id ?>" name="song[<?= $song->id ?>]">
-												<label for="song_<?= $song->id ?>">
+												<input type="checkbox" class="form-check-input" style="" id="song[<?= $song->id ?>]" name="song[<?= $song->id ?>]">
+												<label for="song[<?= $song->id ?>]">
 													<i class="fa-solid fa-music"></i>
-													<span title="<?= $song->file ?>"><?= $song->track ?> : <?= $song->title ?></span> (<?= $song->time ?> s) [<?= $song->mode ?> <?= $song->bitrate ?> B/s] <?= $song->size ?> B
+													<span title="<?= $song->file ?>"><?= $song->track ?> : <?= $song->title ?></span>
+													(<?= Stuff::secondesToDurationString($song->time) ?>) [<?= $song->mode ?> <?= intdiv($song->bitrate, 1024) ?> kB/s] <?= intdiv($song->size, 1024*1024) ?> MB
 												</label>
 											</li>
 											<?php
@@ -144,7 +147,7 @@ $(function(){
 	$("input[type=checkbox]").on("change", function(){
 		var id = $(this).attr("id");
 		var status = $(this).is(':checked');
-		var list = $(this).parent().next();
+		var list = $(this).parent("li").next("ul");
 		list.find("input[type=checkbox]").each(function(){
 			$(this).prop("checked", status);
 		});

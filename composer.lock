@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "53eee18a8d85994c4c759081650c0479",
+    "content-hash": "904b29c6f316e4ab4edca6b1eb77ffc0",
     "packages": [
         {
             "name": "ampache/ampacheapi-php",
@@ -283,21 +283,22 @@
         },
         {
             "name": "ikkez/f3-cortex",
-            "version": "v1.7.8",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ikkez/f3-cortex.git",
-                "reference": "79468b7a04695ad343b2f4d7dbdbe575a6b08a35"
+                "reference": "47d2596914776877ef4d87706d1faa812d1398f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ikkez/f3-cortex/zipball/79468b7a04695ad343b2f4d7dbdbe575a6b08a35",
-                "reference": "79468b7a04695ad343b2f4d7dbdbe575a6b08a35",
+                "url": "https://api.github.com/repos/ikkez/f3-cortex/zipball/47d2596914776877ef4d87706d1faa812d1398f2",
+                "reference": "47d2596914776877ef4d87706d1faa812d1398f2",
                 "shasum": ""
             },
             "require": {
                 "ikkez/f3-schema-builder": "2.*"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "classmap": [
@@ -319,7 +320,7 @@
             ],
             "support": {
                 "issues": "https://github.com/ikkez/f3-cortex/issues",
-                "source": "https://github.com/ikkez/f3-cortex/tree/v1.7.8"
+                "source": "https://github.com/ikkez/f3-cortex/tree/master"
             },
             "funding": [
                 {
@@ -331,7 +332,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-25T00:25:02+00:00"
+            "time": "2025-07-08T20:54:22+00:00"
         },
         {
             "name": "ikkez/f3-falsum",
@@ -527,39 +528,6 @@
             "time": "2024-11-22T15:36:01+00:00"
         },
         {
-            "name": "olaulau/htmlskel",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/olaulau/HtmlSkel.git",
-                "reference": "33f44fedf3da544d02b609bc923726ccf3c7af14"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/olaulau/HtmlSkel/zipball/33f44fedf3da544d02b609bc923726ccf3c7af14",
-                "reference": "33f44fedf3da544d02b609bc923726ccf3c7af14",
-                "shasum": ""
-            },
-            "require": {
-                "bcosca/fatfree-core": "^3.8",
-                "components/jquery": "^3",
-                "components/jqueryui": "^1",
-                "fortawesome/font-awesome": "^6",
-                "ikkez/f3-cortex": "1.*",
-                "ikkez/f3-falsum": "^2.8",
-                "ikkez/f3-validation-engine": "^1.7",
-                "select2/select2": "^4.0",
-                "twbs/bootstrap": "^5"
-            },
-            "default-branch": true,
-            "type": "library",
-            "support": {
-                "source": "https://github.com/olaulau/HtmlSkel/tree/master",
-                "issues": "https://github.com/olaulau/HtmlSkel/issues"
-            },
-            "time": "2025-03-18T16:09:39+00:00"
-        },
-        {
             "name": "select2/select2",
             "version": "4.0.13",
             "source": {
@@ -657,7 +625,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "ampache/ampacheapi-php": 20,
-        "olaulau/htmlskel": 20
+        "ikkez/f3-cortex": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -6,6 +6,8 @@ use Base;
 use Cache;
 use DB\CortexCollection;
 use DB\SQL;
+use ErrorException;
+use model\Album;
 use model\Catalog;
 use model\CatalogLocal;
 use View;
@@ -154,7 +156,6 @@ class AmpacheCtrl extends Ctrl
 	public static function testGET ()
 	{
 		$f3 = Base::instance();
-		$cache = Cache::instance();
 		
 		# get ampache conf
 		$ampache_server_path = $f3->get("ampache.server.path");
@@ -165,10 +166,47 @@ class AmpacheCtrl extends Ctrl
 		$db = new SQL("mysql:host={$ampache_conf["database_hostname"]};port={$ampache_conf["database_port"]};dbname={$ampache_conf["database_name"]}", $ampache_conf["database_username"], $ampache_conf["database_password"]);
 		$f3->set("db", $db);
 		
-		# do stuff
-		$catalog_wrapper = new Catalog();
-		$catalogs = $catalog_wrapper->find([], []);
+		# get all catalogs
+		$catalogs = (new Catalog)->find([], []);
 		$f3->set("catalogs", $catalogs);
+		
+		# query album diff
+		$src_catalog_id = $f3->get("REQUEST.src_catalog_id");
+		$dest_catalog_id = $f3->get("REQUEST.dest_catalog_id");
+		if (!empty($src_catalog_id) && !empty($dest_catalog_id)) {
+			$catalogs_by_id = $catalogs->getBy("id");
+			if (empty($catalogs_by_id [$src_catalog_id]) || empty($catalogs_by_id [$dest_catalog_id])) {
+				throw new ErrorException("catalogs not found");
+			}
+			
+			$sql = "
+				SELECT	album_artist, year, al.prefix, al.name, al.id
+				FROM	`album` as al
+				INNER JOIN	artist ar ON al.album_artist = ar.id
+				WHERE	catalog = ?
+				AND		album_artist IS NOT NULL
+				AND (album_artist, year, al.prefix, al.name) NOT IN
+				(
+					SELECT	al2.album_artist, al2.year, al2.prefix, al2.name
+					FROM	album al2
+					WHERE	catalog = ?
+				)
+				ORDER BY ar.name, al.prefix, al.name
+			";
+			$params = [$src_catalog_id, $dest_catalog_id];
+			$albums = (new Album)->findByRawSQL($sql, $params);
+			
+			$albums_by_artist = $albums->getBy("album_artist", true);
+			$f3->set("albums_by_artist", $albums_by_artist);
+			
+			$artists = [];
+			foreach ($albums_by_artist as $artist_id => $albums) {
+				foreach ($albums as $album) {
+					$artists [$artist_id] = $album->album_artist;
+				}
+			}
+			$f3->set("artists", $artists);
+		}
 		
 		$view = new View();
 		echo $view->render('ampache/test.phtml');

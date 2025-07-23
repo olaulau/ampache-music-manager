@@ -1,5 +1,4 @@
 <?php
-
 use DB\CortexCollection;
 
 require_once __DIR__.'/../layout/head.phtml';
@@ -10,8 +9,8 @@ require_once __DIR__.'/../layout/header.phtml';
 ?>
 
 	<main role="main" class="container-fluid bg-info">
-		<form action="" method="get" class="d-flex justify-content-between">
-			<div class="row">
+		<form action="" method="get" class="d-flex justify-content-between pb-1">
+			<div class="row g-3 align-items-center">
 				<div class="col-auto">
 					<label for="src_catalog_id" class="col-form-label">source catalog</label>
 				</div>
@@ -68,6 +67,7 @@ require_once __DIR__.'/../layout/header.phtml';
 					<li>
 						<input type="checkbox" class="form-check-input" style="" id="catalog_<?= $src_catalog->id ?>" name="catalog[<?= $src_catalog->id ?>]">
 						<label for="catalog_<?= $src_catalog->id ?>">
+							<i class="fa-solid fa-book"></i>
 							<span title="<?= $src_catalog->catalogLocal->path ?>"><?= $src_catalog-> name ?></span>
 						</label>
 					</li>
@@ -79,6 +79,7 @@ require_once __DIR__.'/../layout/header.phtml';
 							<li>
 								<input type="checkbox" class="form-check-input" style="" id="artist_<?= $artist->id ?>" name="artist[<?= $artist->id ?>]">
 								<label for="artist_<?= $artist->id ?>">
+									<i class="fa-solid fa-people-group"></i>
 									<?= $artist -> prefix ?> <?= $artist -> name ?>	
 								</label>
 							</li>
@@ -91,6 +92,7 @@ require_once __DIR__.'/../layout/header.phtml';
 									<li>
 										<input type="checkbox" class="form-check-input" style="" id="album_<?= $album->id ?>" name="[<?= $album->id ?>]">
 										<label for="album_<?= $album->id ?>">
+											<i class="fa-solid fa-record-vinyl"></i>
 											(<?= $album -> year ?>) <?= $album -> name ?>
 										</label>
 									</li>
@@ -103,6 +105,7 @@ require_once __DIR__.'/../layout/header.phtml';
 											<li>
 												<input type="checkbox" class="form-check-input" style="" id="song_<?= $song->id ?>" name="song[<?= $song->id ?>]">
 												<label for="song_<?= $song->id ?>">
+													<i class="fa-solid fa-music"></i>
 													<span title="<?= $song->file ?>"><?= $song->track ?> : <?= $song->title ?></span> (<?= $song->time ?> s) [<?= $song->mode ?> <?= $song->bitrate ?> B/s] <?= $song->size ?> B
 												</label>
 											</li>
@@ -125,6 +128,7 @@ require_once __DIR__.'/../layout/header.phtml';
 	}
 	?>
 	
+	
 <?php
 require_once __DIR__.'/../layout/footer.phtml';
 ?>
@@ -132,3 +136,19 @@ require_once __DIR__.'/../layout/footer.phtml';
 <?php
 require_once __DIR__.'/../layout/foot.phtml';
 ?>
+
+<script language="javascript">
+$(function(){
+	
+	// propagate checkbox status to sons
+	$("input[type=checkbox]").on("change", function(){
+		var id = $(this).attr("id");
+		var status = $(this).is(':checked');
+		var list = $(this).parent().next();
+		list.find("input[type=checkbox]").each(function(){
+			$(this).prop("checked", status);
+		});
+	});
+	
+});
+</script>

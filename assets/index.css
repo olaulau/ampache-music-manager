@@ -41,3 +41,9 @@ code {
 pre {
 	margin: 0;
 }
+
+
+/* remove bullet from lists */
+ul {
+	list-style-type: none;
+}

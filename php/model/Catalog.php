@@ -7,7 +7,7 @@ class Catalog extends Mdl
 	final $table = "catalog";
 	
 	final $fieldConf = [
-		"CatalogLocal" => [
+		"catalogLocal" => [
 			"has-one" => [CatalogLocal::class, "catalog_id"],
 		],
 	];

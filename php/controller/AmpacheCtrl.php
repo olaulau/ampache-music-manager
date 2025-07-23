@@ -169,13 +169,13 @@ class AmpacheCtrl extends Ctrl
 		
 		# get all catalogs
 		$catalogs = (new Catalog)->find([], []);
-		$f3->set("catalogs", $catalogs);
+		$catalogs_by_id = $catalogs->getBy("id");
+		$f3->set("catalogs_by_id", $catalogs_by_id);
 		
 		# query album diff
 		$src_catalog_id = $f3->get("REQUEST.src_catalog_id");
 		$dest_catalog_id = $f3->get("REQUEST.dest_catalog_id");
 		if (!empty($src_catalog_id) && !empty($dest_catalog_id)) {
-			$catalogs_by_id = $catalogs->getBy("id");
 			if (empty($catalogs_by_id [$src_catalog_id]) || empty($catalogs_by_id [$dest_catalog_id])) {
 				throw new ErrorException("catalogs not found");
 			}

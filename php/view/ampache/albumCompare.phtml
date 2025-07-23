@@ -1,7 +1,6 @@
 <?php
 
 use DB\CortexCollection;
-use model\Catalog;
 
 require_once __DIR__.'/../layout/head.phtml';
 ?>
@@ -11,8 +10,8 @@ require_once __DIR__.'/../layout/header.phtml';
 ?>
 
 	<main role="main" class="container-fluid bg-info">
-		<form action="" method="get">
-			<div class="row g-3 align-items-center">
+		<form action="" method="get" class="d-flex justify-content-between">
+			<div class="row">
 				<div class="col-auto">
 					<label for="src_catalog_id" class="col-form-label">source catalog</label>
 				</div>
@@ -20,7 +19,7 @@ require_once __DIR__.'/../layout/header.phtml';
 					<select class="form-select" name="src_catalog_id">
 						<option value=""></option>
 						<?php
-						foreach ($catalogs as $catalog) {
+						foreach ($catalogs_by_id as $catalog) {
 							?>
 							<option value="<?= $catalog->id ?>" <?= ($catalog->id == $f3->get("REQUEST.src_catalog_id")) ? "selected" : "" ?>><?= $catalog->name ?></option>
 							<?php
@@ -40,7 +39,7 @@ require_once __DIR__.'/../layout/header.phtml';
 					<select class="form-select" name="dest_catalog_id">
 						<option value=""></option>
 						<?php
-						foreach ($catalogs as $catalog) {
+						foreach ($catalogs_by_id as $catalog) {
 							?>
 							<option value="<?= $catalog->id ?>" <?= ($catalog->id == $f3->get("REQUEST.dest_catalog_id")) ? "selected" : "" ?>><?= $catalog->name ?></option>
 							<?php
@@ -50,34 +49,67 @@ require_once __DIR__.'/../layout/header.phtml';
 				</div>
 
 				<div class="col-auto">
-					<button class="btn btn-success" type="submit">compare</button>
+					<button class="btn btn-success" type="submit"><i class="fa-solid fa-not-equal"></i> compare</button>
 				</div>
+			</div>
+			<div class="">
+				<button class="btn btn-danger" type="submit" form="form-select-songs"><i class="fa-solid fa-file-export"></i> convert</button>
 			</div>
 		</form>
 	</main>
 	
 	<?php
 	if(!empty($albums_by_artist)) {
+		$src_catalog = $catalogs_by_id [$f3->get("REQUEST.src_catalog_id")];
 		?>
 		<main role="main" class="container-fluid">
-			<ul>
-				<?php
-				foreach ($albums_by_artist as $artist_id => $albums) {
-					$artist = $artists [$artist_id];
-					?>
-					<li><?= $artist -> prefix ?> <?= $artist -> name ?></li>
+			<form action="" method="post" id="form-select-songs">
+				<ul>
+					<li>
+						<input type="checkbox" class="form-check-input" style="" id="catalog_<?= $src_catalog->id ?>" name="catalog[<?= $src_catalog->id ?>]">
+						<label for="catalog_<?= $src_catalog->id ?>">
+							<span title="<?= $src_catalog->catalogLocal->path ?>"><?= $src_catalog-> name ?></span>
+						</label>
+					</li>
 					<ul>
 						<?php
-						foreach ($albums as $album) {
+						foreach ($albums_by_artist as $artist_id => $albums) {
+							$artist = $artists [$artist_id];
 							?>
-							<li><?= $album -> name ?></li>
+							<li>
+								<input type="checkbox" class="form-check-input" style="" id="artist_<?= $artist->id ?>" name="artist[<?= $artist->id ?>]">
+								<label for="artist_<?= $artist->id ?>">
+									<?= $artist -> prefix ?> <?= $artist -> name ?>	
+								</label>
+							</li>
 							<ul>
 								<?php
-								$songs = $album->songs; /** @var CortexCollection $songs */
-								$songs->orderBy("track ASC");
-								foreach ($songs as $song) {
+								$albums = CortexCollection::factory($albums);
+								$albums->orderBy("year ASC");
+								foreach ($albums as $album) {
 									?>
-									<li><?= $song->track ?> : <?= $song->title ?> (<?= $song->time ?>) [ <?= $song->file ?> ] (<?= $song->size ?>) <?= $song->mode ?> <?= $song->bitrate ?></li>
+									<li>
+										<input type="checkbox" class="form-check-input" style="" id="album_<?= $album->id ?>" name="[<?= $album->id ?>]">
+										<label for="album_<?= $album->id ?>">
+											(<?= $album -> year ?>) <?= $album -> name ?>
+										</label>
+									</li>
+									<ul>
+										<?php
+										$songs = $album->songs; /** @var CortexCollection $songs */
+										$songs->orderBy("track ASC");
+										foreach ($songs as $song) {
+											?>
+											<li>
+												<input type="checkbox" class="form-check-input" style="" id="song_<?= $song->id ?>" name="song[<?= $song->id ?>]">
+												<label for="song_<?= $song->id ?>">
+													<span title="<?= $song->file ?>"><?= $song->track ?> : <?= $song->title ?></span> (<?= $song->time ?> s) [<?= $song->mode ?> <?= $song->bitrate ?> B/s] <?= $song->size ?> B
+												</label>
+											</li>
+											<?php
+										}
+										?>
+									</ul>
 									<?php
 								}
 								?>
@@ -86,10 +118,8 @@ require_once __DIR__.'/../layout/header.phtml';
 						}
 						?>
 					</ul>
-					<?php
-				}
-				?>
-			</ul>
+				</ul>
+			</form>
 		</main>
 		<?php
 	}

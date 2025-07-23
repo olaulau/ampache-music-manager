@@ -8,7 +8,7 @@ class Artist extends Mdl
 	
 	final $fieldConf = [
 		"albums" => [
-			"relationType" => [Album::class, "album_artist"],
+			"has-many" => [Album::class, "album_artist"],
 		],
 	];
 	

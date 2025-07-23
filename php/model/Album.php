@@ -10,6 +10,9 @@ class Album extends Mdl
 		"album_artist" => [
 			"belongs-to-one" => Artist::class,
 		],
+		"songs" => [
+			"has-many" => [Song::class, "album"],
+		],
 	];
 	
 }

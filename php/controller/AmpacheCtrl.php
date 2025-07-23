@@ -10,6 +10,7 @@ use ErrorException;
 use model\Album;
 use model\Catalog;
 use model\CatalogLocal;
+use model\Mdl;
 use View;
 
 

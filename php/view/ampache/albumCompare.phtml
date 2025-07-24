@@ -97,8 +97,11 @@ require_once __DIR__.'/../layout/header.phtml';
 											<i class="fa-solid fa-record-vinyl"></i>
 											(<?= $album -> year ?>) <?= $album -> name ?>
 										</label>
+										<a class="album-songs-toggle text-black text-decoration-none" id="album-toggle[<?= $album->id ?>]" type="menu">
+											<i class="fa-solid fa-chevron-up rotate-reset"></i>
+										</a>
 									</li>
-									<ul>
+									<ul style="display: none;">
 										<?php
 										$songs = $album->songs; /** @var CortexCollection $songs */
 										$songs->orderBy("track ASC");
@@ -140,18 +143,37 @@ require_once __DIR__.'/../layout/footer.phtml';
 require_once __DIR__.'/../layout/foot.phtml';
 ?>
 
+<style>
+	.rotate {
+		transform: rotate(180deg);
+		transition: .3s;
+	}
+	.rotate-reset {
+		transform: rotate(0deg);
+		transition: .3s;
+	}
+</style>
+
 <script language="javascript">
-$(function(){
-	
-	// propagate checkbox status to sons
-	$("input[type=checkbox]").on("change", function(){
-		var id = $(this).attr("id");
-		var status = $(this).is(':checked');
-		var list = $(this).parent("li").next("ul");
-		list.find("input[type=checkbox]").each(function(){
-			$(this).prop("checked", status);
+	$(function(){
+		
+		// propagate checkbox status to sons
+		$("input[type=checkbox]").on("change", function(){
+			var id = $(this).attr("id");
+			var status = $(this).is(':checked');
+			var list = $(this).parent("li").next("ul");
+			list.find("input[type=checkbox]").each(function(){
+				$(this).prop("checked", status);
+			});
 		});
+		
+		// toggle album songs display
+		$(".album-songs-toggle").on("click", function(){
+			$(this).children("i").toggleClass('rotate');
+			$(this).children("i").toggleClass('rotate-reset');
+			var songs_list = $(this).parent("li").next("ul");
+			songs_list.slideToggle(300);
+		});
+		
 	});
-	
-});
 </script>

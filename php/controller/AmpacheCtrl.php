@@ -3,10 +3,10 @@ namespace controller;
 
 use AmpacheApi\AmpacheApi;
 use Base;
-use DB\SQL;
 use ErrorException;
 use model\Album;
 use model\Catalog;
+use model\Song;
 use View;
 
 
@@ -150,19 +150,8 @@ class AmpacheCtrl extends Ctrl
 	}
 	
 	
-	public static function albumCompareGET ()
+	public static function albumCompareGET (Base $f3, array $params, string $controller)
 	{
-		$f3 = Base::instance();
-		
-		# get ampache conf
-		$ampache_server_path = $f3->get("ampache.server.path");
-		$ampache_conf_file = "{$ampache_server_path}/config/ampache.cfg.php";
-		$ampache_conf = parse_ini_file($ampache_conf_file);
-		
-		# connect its DB
-		$db = new SQL("mysql:host={$ampache_conf["database_hostname"]};port={$ampache_conf["database_port"]};dbname={$ampache_conf["database_name"]}", $ampache_conf["database_username"], $ampache_conf["database_password"]);
-		$f3->set("db", $db);
-		
 		# get all catalogs
 		$catalogs = (new Catalog)->find([], []);
 		$catalogs_by_id = $catalogs->getBy("id");
@@ -210,11 +199,47 @@ class AmpacheCtrl extends Ctrl
 	}
 	
 	
-	public static function albumComparePOST (Base $f3 /* ... */)
+	public static function albumComparePOST (Base $f3, array $params, string $controller)
 	{
-		$post = $f3->get("POST");
-		var_dump($post);
-		die;
+		$songs_checked = $f3->get("POST.song");
+		if (empty($songs_checked)) {
+			die("no song selected");
+		}
+		
+		$dest_catalog_id = $f3->get("GET.dest_catalog_id");
+		$dest_catalog = new Catalog()->findone(["id = ?", $dest_catalog_id], []);
+		$dest_catalog_path = $dest_catalog->catalogLocal->path;
+		
+		$songs_id = array_keys($songs_checked);
+		$songs = new Song()->find(["id IN (?)", $songs_id], []);
+		$songs_by_id = $songs->getBy("id");
+		
+		foreach ($songs_id as $song_id) {
+			$song = $songs_by_id [$song_id];
+			$album = $song->album;
+			$artist = $album->album_artist;
+			
+			$artist_str = ((empty($artist->prefix)) ? "" : "$artist->prefix ") . $artist->name;
+			$album_str = "({$album->year}) " . ((empty($album->prefix)) ? "" : "$album->prefix ") . "{$album->name} [AAC by laulau]";
+			$disk_str = ($album->disk_count > 1) ? "CD{$song->disk}/" : "";
+			$track_str = str_pad ($song->track, 2, 0, STR_PAD_LEFT);
+			$song_str = "{$track_str} - {$song->title}";
+			$extension = "m4a"; //TODO config
+			$destination_file = "{$dest_catalog_path}/{$artist_str}/{$album_str}/{$disk_str}{$song_str}.{$extension}";
+			
+			echo "encoding song #{$song_id} ({$song->album->album_artist->name} / {$song->album->name} / {$song->title}) <br/>" . PHP_EOL;
+			echo "{$song->file} <br/>" . PHP_EOL;
+			echo " --> <br/>" . PHP_EOL;
+			echo "{$destination_file} <br/>" . PHP_EOL; //TODO destination
+			echo "...";
+			
+			//TODO mkdir destination folders
+			//TODO encode
+			//TODO echo encoding status
+			
+			echo "<br/>" . PHP_EOL;
+			echo "<br/>" . PHP_EOL;
+		}
 		
 	}
 	

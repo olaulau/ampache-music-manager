@@ -27,3 +27,9 @@ root path
 						media file
 
 ### créer une classe MediaLibrary qui sache gérer tout ca
+
+
+
+max_input_vars high :
+- dynamically check value
+- document in READMEcheck php.ini

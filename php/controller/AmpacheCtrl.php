@@ -7,11 +7,9 @@ use ErrorException;
 use Exception;
 use FFMpeg\FFMpeg;
 use FFMpeg\Format\Audio\Aac;
-use FFMpeg\Format\Video\X264;
 use model\Album;
 use model\Catalog;
 use model\Song;
-use Psr\Log\NullLogger;
 use View;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -226,10 +224,11 @@ class AmpacheCtrl extends Ctrl
 		ini_set('zlib.output_compression', 'off');
 		ob_implicit_flush(true);
 		while (ob_get_level() > 0) ob_end_flush();
-		header('Content-Type: text/html; charset=UTF-8');
+		header('Content-Encoding: none'); # prevent double compression
+		header('Content-Type: text/html');
 		header('Cache-Control: no-cache');
-		echo str_repeat(' ', 1024);
-		
+		header('Connection: keep-alive');
+
 		set_time_limit(0); # no PHP timeout (but maybe still with apache)
 		foreach ($songs_id as $song_id) {
 			# prepare data
@@ -242,7 +241,7 @@ class AmpacheCtrl extends Ctrl
 			$disk_str = ($album->disk_count > 1) ? "CD{$song->disk}/" : "";
 			$track_str = str_pad ($song->track, 2, 0, STR_PAD_LEFT);
 			$song_str = "{$track_str} - {$song->title}";
-			$extension = "m4a"; //TODO config
+			$extension = "m4a"; #TODO config
 			$destination_file = "{$dest_catalog_path}/{$artist_str}/{$album_str}/{$disk_str}{$song_str}.{$extension}";
 			
 			# display what we are doing

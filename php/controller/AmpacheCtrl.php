@@ -230,8 +230,9 @@ class AmpacheCtrl extends Ctrl
 		header('Cache-Control: no-cache');
 		echo str_repeat(' ', 1024);
 		
-		set_time_limit(0); # no PHP timeout (but maybe apache)
+		set_time_limit(0); # no PHP timeout (but maybe still with apache)
 		foreach ($songs_id as $song_id) {
+			# prepare data
 			$song = $songs_by_id [$song_id];
 			$album = $song->album;
 			$artist = $album->album_artist;
@@ -242,14 +243,20 @@ class AmpacheCtrl extends Ctrl
 			$track_str = str_pad ($song->track, 2, 0, STR_PAD_LEFT);
 			$song_str = "{$track_str} - {$song->title}";
 			$extension = "m4a"; //TODO config
-			$destination_file = "/tmp{$dest_catalog_path}/{$artist_str}/{$album_str}/{$disk_str}{$song_str}.{$extension}"; #TODO remove /tmp
+			$destination_file = "{$dest_catalog_path}/{$artist_str}/{$album_str}/{$disk_str}{$song_str}.{$extension}";
 			
+			# display what we are doing
 			echo "encoding song #{$song_id} ({$song->album->album_artist->name} / {$song->album->name} / {$song->title}) <br/>" . PHP_EOL;
 			echo "{$song->file} <br/>" . PHP_EOL;
 			echo " --> <br/>" . PHP_EOL;
 			echo "{$destination_file} <br/>" . PHP_EOL;
 			echo " ... ";
 			ob_flush(); flush();
+			
+			# check dest file doesn't exist yet
+			if (file_exists($destination_file)) {
+				die ( "the destination already exists. exiting to prevent data loss." );
+			}
 			
 			# create folder if needed
 			$folder = dirname($destination_file);

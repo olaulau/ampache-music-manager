@@ -13,11 +13,11 @@
 		}
 	],
 	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/olaulau/HtmlSkel"
-		}
-	],
+        {
+            "type": "git",
+            "url": "https://github.com/olaulau/php-ffmpeg"
+        }
+    ],
 	"require": {
 		"twbs/bootstrap" : "^5",
 		"components/jquery" : "^3",
@@ -29,6 +29,8 @@
 		"ikkez/f3-cortex": "dev-master",
 		"ikkez/f3-validation-engine": "^1.7",
 		"nicmart/tree": "*",
-		"ampache/ampacheapi-php": "dev-master"
+		"ampache/ampacheapi-php": "dev-master",
+		"php-ffmpeg/php-ffmpeg": "dev-patch-1",
+		"monolog/monolog": "^3.9"
 	}
 }

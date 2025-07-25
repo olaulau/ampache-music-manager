@@ -4,10 +4,17 @@ namespace controller;
 use AmpacheApi\AmpacheApi;
 use Base;
 use ErrorException;
+use Exception;
+use FFMpeg\FFMpeg;
+use FFMpeg\Format\Audio\Aac;
+use FFMpeg\Format\Video\X264;
 use model\Album;
 use model\Catalog;
 use model\Song;
+use Psr\Log\NullLogger;
 use View;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 
 class AmpacheCtrl extends Ctrl
@@ -203,7 +210,7 @@ class AmpacheCtrl extends Ctrl
 	{
 		$songs_checked = $f3->get("POST.song");
 		if (empty($songs_checked)) {
-			die("no song selected");
+			die ("no song selected");
 		}
 		
 		$dest_catalog_id = $f3->get("GET.dest_catalog_id");
@@ -213,7 +220,17 @@ class AmpacheCtrl extends Ctrl
 		$songs_id = array_keys($songs_checked);
 		$songs = new Song()->find(["id IN (?)", $songs_id], []);
 		$songs_by_id = $songs->getBy("id");
+
+		# Turn off any buffering
+		ini_set('output_buffering', 'off');
+		ini_set('zlib.output_compression', 'off');
+		ob_implicit_flush(true);
+		while (ob_get_level() > 0) ob_end_flush();
+		header('Content-Type: text/html; charset=UTF-8');
+		header('Cache-Control: no-cache');
+		echo str_repeat(' ', 1024);
 		
+		set_time_limit(0); # no PHP timeout (but maybe apache)
 		foreach ($songs_id as $song_id) {
 			$song = $songs_by_id [$song_id];
 			$album = $song->album;
@@ -225,17 +242,51 @@ class AmpacheCtrl extends Ctrl
 			$track_str = str_pad ($song->track, 2, 0, STR_PAD_LEFT);
 			$song_str = "{$track_str} - {$song->title}";
 			$extension = "m4a"; //TODO config
-			$destination_file = "{$dest_catalog_path}/{$artist_str}/{$album_str}/{$disk_str}{$song_str}.{$extension}";
+			$destination_file = "/tmp{$dest_catalog_path}/{$artist_str}/{$album_str}/{$disk_str}{$song_str}.{$extension}"; #TODO remove /tmp
 			
 			echo "encoding song #{$song_id} ({$song->album->album_artist->name} / {$song->album->name} / {$song->title}) <br/>" . PHP_EOL;
 			echo "{$song->file} <br/>" . PHP_EOL;
 			echo " --> <br/>" . PHP_EOL;
-			echo "{$destination_file} <br/>" . PHP_EOL; //TODO destination
-			echo "...";
+			echo "{$destination_file} <br/>" . PHP_EOL;
+			echo " ... ";
+			ob_flush(); flush();
 			
-			//TODO mkdir destination folders
-			//TODO encode
-			//TODO echo encoding status
+			# create folder if needed
+			$folder = dirname($destination_file);
+			if (!file_exists ($folder)) {
+				mkdir ($folder, 0777, true);
+			}
+			if (!is_dir ($folder)) {
+				die ("can't create folder");
+			}
+			
+			# php-ffmpeg instance with debug logging
+			$logger = new Logger ('ffmpeg');
+			$logger->pushHandler (new StreamHandler(__DIR__.'/../../tmp/logs/ffmpeg.log', Logger::DEBUG));
+			$ffmpeg = FFMpeg::create ([], $logger);
+			
+			# aac internal encoder, with progress handling
+			$format = new Aac();
+			$format->setAudioKiloBitrate (256);
+			$format->setAudioCodec ("aac");
+			$format->on('progress', function ($audio, $format, $percentage) {
+				echo " Progress: {$percentage}% " . PHP_EOL;
+			});
+			
+			# encode
+			try {
+				$audio = $ffmpeg->openAdvanced([$song->file]);
+				$audio->setAdditionalParameters(["-vn"]); # disable any videos tream, as cover art as often detected as if
+				$audio->map(['0:a'], $format, $destination_file); # encode audio stream with $format to $dest
+				$audio->save();
+				echo "OK <br/>" . PHP_EOL;
+			}
+			catch (Exception $ex) {
+				echo "error : <br/>";
+				echo $ex->getCode() . " : " . $ex->getMessage() . "<br/>";
+				echo "<pre>" . $ex->getTraceAsString() . "</pre> <br/>";
+				die;
+			}
 			
 			echo "<br/>" . PHP_EOL;
 			echo "<br/>" . PHP_EOL;

@@ -228,6 +228,7 @@ class AmpacheCtrl extends Ctrl
 		header('Content-Type: text/html');
 		header('Cache-Control: no-cache');
 		header('Connection: keep-alive');
+		echo str_repeat(' ', 4096);
 
 		set_time_limit(0); # no PHP timeout (but maybe still with apache)
 		foreach ($songs_id as $song_id) {
@@ -251,6 +252,7 @@ class AmpacheCtrl extends Ctrl
 			echo "{$destination_file} <br/>" . PHP_EOL;
 			echo " ... ";
 			ob_flush(); flush();
+			echo str_repeat(' ', 4096);
 			
 			# check dest file doesn't exist yet
 			if (file_exists($destination_file)) {

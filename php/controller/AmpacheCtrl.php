@@ -279,6 +279,8 @@ class AmpacheCtrl extends Ctrl
 			$format->setAudioCodec ("aac");
 			$format->on('progress', function ($audio, $format, $percentage) {
 				echo " Progress: {$percentage}% " . PHP_EOL;
+				ob_flush(); flush();
+				echo str_repeat(' ', 4096);
 			});
 			
 			# encode

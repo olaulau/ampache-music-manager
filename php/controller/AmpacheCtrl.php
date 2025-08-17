@@ -3,6 +3,7 @@ namespace controller;
 
 use AmpacheApi\AmpacheApi;
 use Base;
+use DB\SQL;
 use ErrorException;
 use Exception;
 use FFMpeg\FFMpeg;
@@ -297,7 +298,33 @@ class AmpacheCtrl extends Ctrl
 			echo "<br/>" . PHP_EOL;
 			echo "<br/>" . PHP_EOL;
 		}
+	}
+	
+	
+	public static function codecsGET (Base $f3, array $params, string $controller)
+	{
+		$db = $f3->get("db"); /** @var SQL $db */
 		
+		$sql = "
+			SELECT		c.name as catalog_name, SUBSTRING_INDEX(s.file, '.', -1) AS extension, count(*) AS nb
+			FROM		`song` s
+			INNER JOIN	catalog c
+				ON		s.catalog = c.id
+			GROUP BY	s.catalog, extension
+			ORDER BY	c.name ASC, nb DESC
+			;
+		";
+		$res = $db->exec($sql);
+		
+		$data = [];
+		foreach ($res as $row) {
+			$data [$row ["catalog_name"]] [] = $row;
+		}
+		// var_dump($data); die;
+		$f3->set("data", $data);
+		
+		$view = new View();
+		echo $view->render('ampache/codecs.phtml');
 	}
 	
 }

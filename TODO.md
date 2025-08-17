@@ -1,6 +1,8 @@
 # TODO
 
 ## most important :
+- songs tags
+	- scan process which stores all ongs tas into a separate db table (song_meta : song_id, meta, value)
 - songs with wierd character in filename / tags
     - make a filename generator which removes wierd chars
 - songs without tags -> auto tag

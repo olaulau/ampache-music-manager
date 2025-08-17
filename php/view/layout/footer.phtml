@@ -15,7 +15,7 @@ $db_logs_parsed = Mdl::parseDbLogs();
 			</span>
 			 | 
 			<span class="text-muted" title="<?= $f3->get("db")->log() ?>">
-				<?= count($db_logs_parsed) ?> SQL queries : <?= array_sum($db_logs_parsed) ?> ms
+				<?= count($db_logs_parsed) ?> SQL quer<?= count($db_logs_parsed)>1 ? "ies" : "y" ?> : <?= array_sum($db_logs_parsed) ?> ms
 			</span>
 		</div>
 	</footer>

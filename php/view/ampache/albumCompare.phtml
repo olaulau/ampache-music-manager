@@ -65,7 +65,7 @@ require_once __DIR__.'/../layout/header.phtml';
 		?>
 		<main role="main" class="container-fluid">
 			<form action="" method="post" id="form-select-songs">
-				<ul>
+				<ul class="no-bullet">
 					<li>
 						<input type="checkbox" class="form-check-input" style="" id="catalog[<?= $src_catalog->id ?>]" name="catalog[<?= $src_catalog->id ?>]">
 						<label for="catalog[<?= $src_catalog->id ?>]">
@@ -73,7 +73,7 @@ require_once __DIR__.'/../layout/header.phtml';
 							<span title="<?= $src_catalog->catalogLocal->path ?>"><?= $src_catalog-> name ?></span>
 						</label>
 					</li>
-					<ul>
+					<ul class="no-bullet">
 						<?php
 						foreach ($albums_by_artist as $artist_id => $albums) {
 							$artist = $artists [$artist_id];
@@ -85,7 +85,7 @@ require_once __DIR__.'/../layout/header.phtml';
 									<?= $artist -> prefix ?> <?= $artist -> name ?>	
 								</label>
 							</li>
-							<ul>
+							<ul class="no-bullet">
 								<?php
 								$albums = CortexCollection::factory($albums);
 								$albums->orderBy("year ASC");
@@ -101,7 +101,7 @@ require_once __DIR__.'/../layout/header.phtml';
 											<i class="fa-solid fa-chevron-up rotate-reset"></i>
 										</a>
 									</li>
-									<ul style="display: none;">
+									<ul class="no-bullet" style="display: none;">
 										<?php
 										$songs = $album->songs; /** @var CortexCollection $songs */
 										$songs->orderBy("track ASC");

@@ -44,6 +44,6 @@ pre {
 
 
 /* remove bullet from lists */
-ul {
+ul.no-bullet {
 	list-style-type: none;
 }

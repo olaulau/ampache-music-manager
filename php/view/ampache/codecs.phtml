@@ -1,0 +1,52 @@
+<?php
+require_once __DIR__.'/../layout/head.phtml';
+?>
+
+<?php
+require_once __DIR__.'/../layout/header.phtml';
+?>
+
+	<main role="main" class="container-fluid bg-info">
+		<ul class="list-group">
+		<?php
+		// var_dump($data); die;
+		foreach ($data as $catalog_name => $catalogs) {
+				?>
+				<li class="list-group-item d-flex justify-content-between align-items-center m-2">
+					<?= $catalog_name ?>
+					<ul class="list-group">
+					<?php
+					foreach ($catalogs as $catalog) {
+						?>
+							<li class="list-group-item d-flex justify-content-between align-items-center">
+								<?= $catalog ["extension"] ?> &nbsp; 
+								<span class="badge text-bg-primary rounded-pill"><?= $catalog ["nb"] ?></span>
+							</li>
+						<?php
+					}
+					?>
+					</ul>
+				</li>
+				<?php
+		}
+		?>
+		</ul>
+	</main>
+	
+	
+	
+<?php
+require_once __DIR__.'/../layout/footer.phtml';
+?>
+
+<?php
+require_once __DIR__.'/../layout/foot.phtml';
+?>
+
+<style>
+	
+</style>
+
+<script language="javascript">
+	
+</script>

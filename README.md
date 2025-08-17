@@ -1,4 +1,4 @@
-# MusicLibraryHandler
+# Ampache music manager
 
 ## install
 composer install  

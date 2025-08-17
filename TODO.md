@@ -1,6 +1,20 @@
 # TODO
 
-## features
+## most important :
+- songs with wierd character in filename / tags
+    - make a filename generator which removes wierd chars
+- songs without tags -> auto tag
+- songs with bad format dates
+- songs by codec + bitrate -> detect bad songs
+- songs without cover -> download cover.jpg into album folder
+
+- authentication
+	- check ampache admin user ?
+	    password : non-salt sha256
+	    admin : access = 100
+
+
+## other features
 - bulk
     - check directory structure
     - add format to album without format tag
@@ -32,4 +46,21 @@ root path
 
 max_input_vars high :
 - dynamically check value
-- document in READMEcheck php.ini
+- document in README check php.ini
+
+- function to initialise unbuffered  response
+- function for sending flushed to browser
+
+
+
+- ampache : l'action "update" d'un catalog semble bien faire tout, et rapidement (add, remote, update tags ...)
+=> à tester pour les covers
+
+
+- affichages
+	logger en parallèle, car comme c'est très long on peut perdre le fil (le serveur web aussi) et ce serait bien d'avoir tout dans les logs
+
+
+- encoding
+	multithreading for each file ?
+

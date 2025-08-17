@@ -8,11 +8,6 @@
 - songs by codec + bitrate -> detect bad songs
 - songs without cover -> download cover.jpg into album folder
 
-- authentication
-	- check ampache admin user ?
-	    password : non-salt sha256
-	    admin : access = 100
-
 
 ## other features
 - bulk

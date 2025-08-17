@@ -10,15 +10,15 @@ use View;
 class BulkCtrl extends Ctrl
 {
 
-	public static function beforeRoute ()
+	public static function beforeRoute (Base $f3, array $params, string $controller)
 	{
-		parent::beforeRoute();
+		parent::beforeRoute($f3, $params, $controller);
 	}
     
 	
-	public static function afterRoute ()
+	public static function afterRoute (Base $f3, array $params, string $controller)
 	{
-		parent::afterRoute();
+		parent::afterRoute($f3, $params, $controller);
 	}
 
 	
@@ -41,9 +41,8 @@ class BulkCtrl extends Ctrl
 		}
 	}
 	
-	public static function renameGET ()
+	public static function renameGET (Base $f3, array $params, string $controller)
 	{
-		$f3 = Base::instance();
 		$cache = Cache::instance();
 		
 		$root_path = $cache->get("config.root_path");
@@ -64,7 +63,7 @@ class BulkCtrl extends Ctrl
 	}
 	
 	
-	public static function renamePOST ()
+	public static function renamePOST (Base $f3, array $params, string $controller)
 	{
 		
 	}

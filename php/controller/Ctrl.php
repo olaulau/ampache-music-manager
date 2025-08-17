@@ -6,7 +6,7 @@ use DB\SQL;
 
 abstract class Ctrl
 {
-	public static function beforeRoute ()
+	public static function beforeRoute (Base $f3, array $params, string $controller)
 	{
 		$f3 = Base::instance();
 		
@@ -21,7 +21,7 @@ abstract class Ctrl
 	}
     
 	
-	public static function afterRoute ()
+	public static function afterRoute (Base $f3, array $params, string $controller)
 	{
 		
 	}

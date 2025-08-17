@@ -30,21 +30,10 @@
 				</div>
 				
 				<span>
-					<?php
-					if(empty($SESSION ["auth"] ["login"])) {
-						?>
-						guest
-						<?php
-					}
-					else {
-						?>
-						<?= $SESSION ["auth"] ["login"] ?>
-						<a  class="text-danger" title="logout" href="<?= $BASE . $f3->alias("logout") ?> ">
-							<i class="fa-solid fa-right-from-bracket"></i>
-						</a>
-						<?php
-					}
-					?>
+					<?= $SESSION ["auth"] ["user"] ["fullname"] ?>
+					<a class="btn btn-danger" title="logout" href="<?= $BASE . $f3->alias("logout") ?> ">
+						<i class="fa-solid fa-right-from-bracket"></i>
+					</a>
 				</span>
 			</div>
 		</nav>

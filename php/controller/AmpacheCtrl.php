@@ -18,25 +18,23 @@ use Monolog\Handler\StreamHandler;
 class AmpacheCtrl extends Ctrl
 {
 
-	public static function beforeRoute ()
+	public static function beforeRoute (Base $f3, array $params, string $controller)
 	{
-		parent::beforeRoute();
+		parent::beforeRoute($f3, $params, $controller);
 	}
     
 	
-	public static function afterRoute ()
+	public static function afterRoute (Base $f3, array $params, string $controller)
 	{
-		parent::afterRoute();
+		parent::afterRoute($f3, $params, $controller);
 	}
 
 	
 	static function debug_event () {}
 	
 	
-	public static function statsGET ()
+	public static function statsGET (Base $f3, array $params, string $controller)
 	{
-		$f3 = \Base::instance();
-		
 		$ampache = new AmpacheApi (
 			[
 				'username'			=> $f3->get("ampache.api.username"),	// Username
@@ -106,10 +104,8 @@ class AmpacheCtrl extends Ctrl
 	}
 	
 	
-	public static function navigateGET ()
+	public static function navigateGET (Base $f3, array $params, string $controller)
 	{
-		$f3 = \Base::instance();
-		
 		$ampache = new AmpacheApi (
 			[
 				'username'			=> $f3->get("ampache.username"),	// Username

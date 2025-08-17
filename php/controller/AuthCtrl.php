@@ -10,15 +10,15 @@ use View;
 class AuthCtrl extends Ctrl
 {
 
-	public static function beforeRoute ()
+	public static function beforeRoute (Base $f3, array $params, string $controller)
 	{
-		parent::beforeRoute();
+		parent::beforeRoute($f3, $params, $controller);
 	}
     
 	
-	public static function afterRoute ()
+	public static function afterRoute (Base $f3, array $params, string $controller)
 	{
-		parent::afterRoute();
+		parent::afterRoute($f3, $params, $controller);
 	}
 
 	
@@ -55,14 +55,14 @@ class AuthCtrl extends Ctrl
 			throw new ErrorException("insuffisant access");
 		}
 		
-		$f3->set("SESSION.auth.login", $login);
+		$f3->set("SESSION.auth.user", $user->cast());
 		$f3->reroute("@homepage");
 	}
 	
 	
 	public static function logoutGET (Base $f3, array $params, string $controller)
 	{
-		$f3->clear("SESSION.auth.login");
+		$f3->clear("SESSION.auth.user");
 		$f3->reroute("@homepage");
 	}
 	

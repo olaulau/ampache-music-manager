@@ -7,18 +7,18 @@ use \classes\FsTree;
 use View;
 
 
-class IndexCtrl extends Ctrl
+class IndexCtrl extends PrivateCtrl
 {
 
-	public static function beforeRoute ()
+	public static function beforeRoute (Base $f3, array $params, string $controller)
 	{
-		parent::beforeRoute();
+		parent::beforeRoute($f3, $params, $controller);
 	}
     
 	
-	public static function afterRoute ()
+	public static function afterRoute (Base $f3, array $params, string $controller)
 	{
-		parent::afterRoute();
+		parent::afterRoute($f3, $params, $controller);
 	}
 
 	

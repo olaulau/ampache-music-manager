@@ -1,7 +1,7 @@
 	<header>
 		<!-- Fixed navbar -->
 		<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
-			<div class="container-fluid">
+			<div class="container-fluid d-flex justify-content-between">
 				<a class="navbar-brand" href="<?= $BASE . $f3->alias("homepage") ?>">Music library handler</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -28,6 +28,24 @@
 						</li>
 					</ul>
 				</div>
+				
+				<span>
+					<?php
+					if(empty($SESSION ["auth"] ["login"])) {
+						?>
+						guest
+						<?php
+					}
+					else {
+						?>
+						<?= $SESSION ["auth"] ["login"] ?>
+						<a  class="text-danger" title="logout" href="<?= $BASE . $f3->alias("logout") ?> ">
+							<i class="fa-solid fa-right-from-bracket"></i>
+						</a>
+						<?php
+					}
+					?>
+				</span>
 			</div>
 		</nav>
 	</header>

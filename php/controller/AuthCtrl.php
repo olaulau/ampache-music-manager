@@ -31,7 +31,6 @@ class AuthCtrl extends Ctrl
 	
 	public static function loginPOST (Base $f3, array $params, string $controller)
 	{
-		
 		$login = $f3->get("POST.login");
 		$password = $f3->get("POST.password");
 		if(empty($login) || empty($password)) {

@@ -109,13 +109,13 @@ class AmpacheCtrl extends Ctrl
 	{
 		$ampache = new AmpacheApi (
 			[
-				'username'			=> $f3->get("ampache.username"),	// Username
-				'password'			=> $f3->get("ampache.password"),	// Password
-				'server'			=> $f3->get("ampache.hostname"),	// Server address, without http/https prefix
-				'debug_callback'	=> self::class . '::debug_event',	// server callback function
-				'api_secure'		=> $f3->get("ampache.secure"),		// Set to true to use https
-				'api_version'		=> "6",								// Set API response version. 3, 4, 5, 6 (default: 6)
-				'api_format'		=> "json",							// Set API response format. xml, json (default: json)
+				'username'			=> $f3->get("ampache.api.username"),	// Username
+				'password'			=> $f3->get("ampache.api.password"),	// Password
+				'server'			=> $f3->get("ampache.api.hostname"),	// Server address, without http/https prefix
+				'debug_callback'	=> self::class . '::debug_event',		// server callback function
+				'api_secure'		=> $f3->get("ampache.api.secure"),		// Set to true to use https
+				'api_version'		=> "6",									// Set API response version. 3, 4, 5, 6 (default: 6)
+				'api_format'		=> "json",								// Set API response format. xml, json (default: json)
 				"debug"				=>	false,
 			]
 		);
@@ -155,8 +155,7 @@ class AmpacheCtrl extends Ctrl
 	public static function albumCompareGET (Base $f3, array $params, string $controller)
 	{
 		# get all catalogs
-		$catalogs = (new Catalog)->find([], []);
-		$catalogs_by_id = $catalogs->getBy("id");
+		$catalogs_by_id = (new Catalog)->find([], ["order" => "id ASC"]);
 		$f3->set("catalogs_by_id", $catalogs_by_id);
 		
 		# query album diff

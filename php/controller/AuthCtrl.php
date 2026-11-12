@@ -54,14 +54,19 @@ class AuthCtrl extends Ctrl
 			throw new ErrorException("insuffisant access");
 		}
 		
-		$f3->set("SESSION.auth.user", $user->cast());
+		$auth = [
+			"user" 		=> $login,
+			"password" 	=> $password,
+			"fullname" 	=> $user->fullname,
+		];
+		$f3->set("SESSION.auth", $auth);
 		$f3->reroute("@homepage");
 	}
 	
 	
 	public static function logoutGET (Base $f3, array $params, string $controller)
 	{
-		$f3->clear("SESSION.auth.user");
+		$f3->clear("SESSION.auth");
 		$f3->reroute("@homepage");
 	}
 	

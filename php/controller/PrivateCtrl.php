@@ -9,7 +9,7 @@ abstract class PrivateCtrl extends Ctrl
 	{
 		parent::beforeRoute($f3, $params, $controller);
 		
-		if (empty($f3->get("SESSION.auth.user"))) {
+		if (empty($f3->get("SESSION.auth"))) {
 			$f3->reroute("@login");
 			die;
 		}
